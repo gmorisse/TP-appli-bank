@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package fr.solutec.servlet;
-
+import fr.solutec.model.*;
+import fr.solutec.dao.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -58,7 +59,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     /**
@@ -72,7 +73,27 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+                String login = request.getParameter("login");
+        String password = request.getParameter("pwd");
+        PrintWriter out = response.getWriter();
+        
+        
+        try {
+            Person p = PersonDao.getByLoginAndPassword(login, password);
+
+            if (p != null) {
+                request.getSession(true).setAttribute("userConnect", p);
+                //request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
+                response.sendRedirect("home");
+            } else {
+                request.setAttribute("msg", "identifiant ou mot de passe incorrecte");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+
+        } catch (Exception e) {
+            
+            out.print("err : " + e.getMessage());
+        }
     }
 
     /**
