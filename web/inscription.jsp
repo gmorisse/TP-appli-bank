@@ -25,7 +25,7 @@
         <h3 class="text-center titre-perso mt-4">Inscription</h3>
         
         <div class="container mt-4">
-            <form action="InscriptionServlet" method="POST">
+            <form action="inscription" method="POST">
                 <div style="margin: auto; width: 40%">
                     <div class="form-group">
                         <label class="label-perso">Nom : </label>

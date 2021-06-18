@@ -40,21 +40,28 @@ public class PersonDao {
         return p;
     }
     
-    public static void insertPerson(Person person) throws SQLException{
+    public static void insertUser(Person person) throws SQLException{
         // String sql = "INSERT INTO person (nom, prenom, login, password) VALUES (" + user.getNom() + ", " + user.getPrenom() + ", " + user.getLogin() + ", " + user.getPassword() + "";
         // A ne pas utiliser -> faille d'injection SQL
-        String sql = "INSERT INTO person (nom, prenom, login, password, mail) VALUES (?, ?, ?, ?, ?)";
+        String sql1 = "INSERT INTO person (nom, prenom, login, password, mail) VALUES (?, ?, ?, ?, ?)";
         
         Connection connexion = AccessBD.getConnexion();
         
-        PreparedStatement requete = connexion.prepareStatement(sql);
-        requete.setString(1, person.getNom());
-        requete.setString(2, person.getPrenom());
-        requete.setString(3, person.getLogin());
-        requete.setString(4, person.getPassword());
-        requete.setString(5, person.getMail());
+        PreparedStatement requete1 = connexion.prepareStatement(sql1);
+        requete1.setString(1, person.getNom());
+        requete1.setString(2, person.getPrenom());
+        requete1.setString(3, person.getLogin());
+        requete1.setString(4, person.getPassword());
+        requete1.setString(5, person.getMail());
         
-        requete.execute();
+        requete1.execute();
+        
+        String sql2 = "INSERT INTO client (Person_idPerson) VALUES (?)";
+        
+        PreparedStatement requete2 = connexion.prepareStatement(sql2);
+        requete2.setInt(1, getIdByLogin(person.getLogin()));
+        
+        requete2.execute();
         
     }
 

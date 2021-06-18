@@ -84,7 +84,7 @@ public class InscriptionServlet extends HttpServlet {
         Person p = new Person(1, nom, prenom, login, password, mail);
         
         try {
-            PersonDao.insertPerson(p);
+            PersonDao.insertUser(p);
             
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
