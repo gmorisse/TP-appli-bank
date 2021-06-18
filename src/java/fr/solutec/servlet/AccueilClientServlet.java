@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package fr.solutec.servlet;
-import fr.solutec.model.*;
-import fr.solutec.dao.*;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author PC
+ * @author neveR
  */
-@WebServlet(name = "ConnexionServlet", urlPatterns = {"/connexion"})
-public class ConnexionServlet extends HttpServlet {
+@WebServlet(name = "AccueilClientServlet", urlPatterns = {"/AccueilClientServlet"})
+public class AccueilClientServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +37,10 @@ public class ConnexionServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConnexionServlet</title>");            
+            out.println("<title>Servlet AccueilClientServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConnexionServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AccueilClientServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,7 +58,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -73,27 +72,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                String login = request.getParameter("login");
-        String password = request.getParameter("pwd");
-        PrintWriter out = response.getWriter();
-        
-        
-        try {
-            Person p = PersonDao.getByLoginAndPassword(login, password);
-
-            if (p != null) {
-                request.getSession(true).setAttribute("userConnect", p);
-                //request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
-                response.sendRedirect("home");
-            } else {
-                request.setAttribute("msg", "identifiant ou mot de passe incorrecte");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            }
-
-        } catch (Exception e) {
-            
-            out.print("err : " + e.getMessage());
-        }
+        processRequest(request, response);
     }
 
     /**

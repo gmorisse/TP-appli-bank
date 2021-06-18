@@ -9,6 +9,15 @@ package fr.solutec.model;
  *
  * @author PC
  */
-public class conseiller {
+public class Admin extends Person{
+
+    public Admin(int id, String nom, String prenom, String login, String password) {
+        super(id, nom, prenom, login, password);
+    }
+
+    public Admin() {
+    }
+
+    
     
 }

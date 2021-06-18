@@ -9,6 +9,13 @@ package fr.solutec.model;
  *
  * @author PC
  */
-public class user {
+public class Conseiller extends Person{
+
+    public Conseiller(int id, String nom, String prenom, String login, String password) {
+        super(id, nom, prenom, login, password);
+    }
+
+    public Conseiller() {
+    }
     
 }
