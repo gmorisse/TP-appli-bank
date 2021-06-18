@@ -36,6 +36,10 @@
                         <input type="text" name="prenom" class="form-control" />
                     </div>
                     <div class="form-group">
+                        <label class="label-perso">mail : </label>
+                        <input type="text" name="mail" class="form-control" />
+                    </div>
+                    <div class="form-group">
                         <label class="label-perso">Login : </label>
                         <input type="text" name="login" class="form-control" />
                     </div>

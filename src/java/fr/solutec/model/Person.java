@@ -15,17 +15,28 @@ public class Person {
     private String prenom;
     private String login;
     private String password; 
+    private String mail;
 
-    public Person(int id, String nom, String prenom, String login, String password) {
+    public Person(int id, String nom, String prenom, String login, String password, String mail) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.login = login;
         this.password = password;
+        this.mail = mail;
     }
 
     public Person() {
     }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
 
     
     

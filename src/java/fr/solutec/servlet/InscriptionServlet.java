@@ -79,8 +79,9 @@ public class InscriptionServlet extends HttpServlet {
         String prenom = request.getParameter("prenom");
         String login = request.getParameter("login");
         String password = request.getParameter("pwd");
+        String mail = request.getParameter("mail");
         
-        Person p = new Person(1, nom, prenom, login, password);
+        Person p = new Person(1, nom, prenom, login, password, mail);
         
         try {
             PersonDao.insertUser(p);
