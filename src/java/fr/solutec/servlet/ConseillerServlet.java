@@ -5,8 +5,6 @@
  */
 package fr.solutec.servlet;
 
-import fr.solutec.dao.PersonDao;
-import fr.solutec.model.Person;
 import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,13 +13,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author PC
  */
-@WebServlet(name = "InscriptionServlet", urlPatterns = {"/inscription"})
-public class InscriptionServlet extends HttpServlet {
+@WebServlet(name = "ConseillerServlet", urlPatterns = {"/Conseiller"})
+public class ConseillerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class InscriptionServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InscriptionServlet</title>");            
+            out.println("<title>Servlet ConseillerServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet InscriptionServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ConseillerServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,7 +60,7 @@ public class InscriptionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("inscription.jsp").forward(request, response);
+request.getRequestDispatcher("WEB-INF/Conseiller.jsp").forward(request, response);
     }
 
     /**
@@ -75,22 +74,7 @@ public class InscriptionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String login = request.getParameter("login");
-        String password = request.getParameter("pwd");
-        String mail = request.getParameter("mail");
-        
-        Person p = new Person(1, nom, prenom, login, password, mail);
-        
-        try {
-            PersonDao.insertPerson(p);
-            
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.print("exp : " + e.getMessage());
-        } 
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -102,5 +86,5 @@ public class InscriptionServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
- 
+
 }

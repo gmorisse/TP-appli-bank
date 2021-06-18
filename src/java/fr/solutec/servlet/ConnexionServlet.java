@@ -73,10 +73,9 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                String login = request.getParameter("login");
+        String login = request.getParameter("login");
         String password = request.getParameter("pwd");
         PrintWriter out = response.getWriter();
-        
         
         try {
             Person p = PersonDao.getByLoginAndPassword(login, password);
@@ -84,7 +83,16 @@ public class ConnexionServlet extends HttpServlet {
             if (p != null) {
                 request.getSession(true).setAttribute("userConnect", p);
                 //request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
-                response.sendRedirect("home");
+                
+                if (PersonDao.isAdmin(p)) {
+                    response.sendRedirect("Admin");
+                }
+                else if (PersonDao.isConseiller(p)){
+                    response.sendRedirect("Conseiller");
+                }
+                else{
+                    response.sendRedirect("Client");
+                }
             } else {
                 request.setAttribute("msg", "identifiant ou mot de passe incorrecte");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -94,6 +102,7 @@ public class ConnexionServlet extends HttpServlet {
             
             out.print("err : " + e.getMessage());
         }
+        
     }
 
     /**

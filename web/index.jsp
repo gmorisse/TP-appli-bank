@@ -25,7 +25,7 @@
         <h3 class="text-center titre-perso mt-4">Connexion</h3>
         
         <div class="container mt-4">
-            <form action="ConnexionServlet" method="POST">
+            <form action="connexion" method="POST">
                 <div style="margin: auto; width: 40%">
                     <div class="form-group">
                         <label class="label-perso">Login : </label>
@@ -36,8 +36,8 @@
                         <input type="password" name="pwd" class="form-control" />
                     </div>
                     <button type="submit" class="btn btn-block btn-primary">Connexion</button>
-                    <button type="button" onclick="window.location.href='inscription'" class="btn btn-block btn-primary">S'inscrire ?</button>
                     <br/>
+                    <button type="button" onclick="window.location.href='inscription'" class="btn btn-block btn-primary">S'inscrire ?</button>
                     <div>
                         <p class="color-red">${msg}</p>
                     </div>
