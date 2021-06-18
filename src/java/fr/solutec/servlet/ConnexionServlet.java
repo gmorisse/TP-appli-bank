@@ -90,8 +90,12 @@ public class ConnexionServlet extends HttpServlet {
                 else if (PersonDao.isConseiller(p)){
                     response.sendRedirect("Conseiller");
                 }
-                else{
+                else if (PersonDao.isValidUser(p)){
                     response.sendRedirect("Client");
+                }
+                else{
+                request.setAttribute("msg", "Le compte est en attente de validation par un conseiller");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
             } else {
                 request.setAttribute("msg", "identifiant ou mot de passe incorrecte");

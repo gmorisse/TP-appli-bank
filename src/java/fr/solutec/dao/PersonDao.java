@@ -83,7 +83,7 @@ public class PersonDao {
     }
     
         public static boolean isConseiller(Person p) throws SQLException{
-        boolean isAdmin = false;
+        boolean isConseiller = false;
         String sql = "SELECT * FROM conseiller c INNER JOIN person p ON p.idPerson = c.Person_idPerson WHERE p.idPerson = ? ";
         
         Connection connexion = AccessBD.getConnexion();
@@ -93,10 +93,10 @@ public class PersonDao {
         ResultSet rs = prepare.executeQuery();
         
         while (rs.next()) {
-            isAdmin = true;
+            isConseiller = true;
         }
         
-        return isAdmin;
+        return isConseiller;
     }
         
     public static int getIdByLogin(String login) throws SQLException{
@@ -122,4 +122,22 @@ public class PersonDao {
     return p.getId();
     }
         
+    
+    public static boolean isValidUser(Person p) throws SQLException{
+        boolean valid = false;
+        String sql = "SELECT * FROM client c INNER JOIN person p ON p.idPerson = c.Person_idPerson WHERE p.idPerson = ? ";
+        
+        Connection connexion = AccessBD.getConnexion();
+        PreparedStatement prepare = connexion.prepareStatement(sql);
+        prepare.setInt(1, getIdByLogin(p.getLogin()));
+        
+        ResultSet rs = prepare.executeQuery();
+        
+        while (rs.next()) {
+            valid = rs.getBoolean("valide");
+        }
+        
+        return valid;
+        
+    }
 }
