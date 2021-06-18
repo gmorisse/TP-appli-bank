@@ -36,7 +36,7 @@
                         <input type="password" name="pwd" class="form-control" />
                     </div>
                     <button type="submit" class="btn btn-block btn-primary">Connexion</button>
-                    <button type="button" onclick="window.location.href='InscriptionServlet'" class="btn btn-block btn-primary">S'inscrire ?</button>
+                    <button type="button" onclick="window.location.href='inscription'" class="btn btn-block btn-primary">S'inscrire ?</button>
                     <br/>
                     <div>
                         <p class="color-red">${msg}</p>
