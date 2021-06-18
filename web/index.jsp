@@ -20,7 +20,7 @@
             integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
     </head>
     <body>
-        <h2 class="center titre-perso my-font-family mt-4"><--img src="Images/1200px-Circle-icons-dev.svg.png" width="5%" />DEV-3-2021>
+        <h2 class="center titre-perso my-font-family mt-4"><img src="images/banque.jpg" width="5%" />DEV-3-2021>
         
         <h3 class="text-center titre-perso mt-4">Connexion</h3>
         
