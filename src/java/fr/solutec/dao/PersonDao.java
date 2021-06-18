@@ -20,13 +20,37 @@ public class PersonDao {
     
     public static Person getByLoginAndPassword(String login, String password) throws SQLException{
     Person p = null;
-
+    // MODIFIER REQUETE
+        String sql = "INSERT INTO person (nom, prenom, login, password) VALUES (?, ?, ?, ?)";
+        
+        Connection connexion = AccessBD.getConnection();
+        
+        PreparedStatement requete = connexion.prepareStatement(sql);
+        requete.setString(1, p.getNom());
+        requete.setString(2, p.getPrenom());
+        requete.setString(3, p.getLogin());
+        requete.setString(4, p.getPassword());
+        
+        requete.execute();
     
     return p;
     }
     
-    public static int getIdByLogin(String login) throws SQLException{
-
-    return 0;
+    public static void insertUser(Person person) throws SQLException{
+        // String sql = "INSERT INTO person (nom, prenom, login, password) VALUES (" + user.getNom() + ", " + user.getPrenom() + ", " + user.getLogin() + ", " + user.getPassword() + "";
+        // A ne pas utiliser -> faille d'injection SQL
+        String sql = "INSERT INTO person (nom, prenom, login, password) VALUES (?, ?, ?, ?)";
+        
+        Connection connexion = AccessBD.getConnection();
+        
+        PreparedStatement requete = connexion.prepareStatement(sql);
+        requete.setString(1, person.getNom());
+        requete.setString(2, person.getPrenom());
+        requete.setString(3, person.getLogin());
+        requete.setString(4, person.getPassword());
+        
+        requete.execute();
+        
     }
+
 }
