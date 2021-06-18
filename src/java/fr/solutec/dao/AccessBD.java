@@ -14,7 +14,7 @@ import java.sql.*;
 public class AccessBD {
     
     private static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
-    private static final String DB_NAME = "debut_bis";
+    private static final String DB_NAME = "tp_banque";
     private static final String URL = "jdbc:mysql://localhost/" + DB_NAME;
     private static final String USER = "root";
     private static final String PASSWORD = "";
