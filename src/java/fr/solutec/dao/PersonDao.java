@@ -16,12 +16,7 @@ import java.sql.SQLException;
  */
 public class PersonDao {
        
-    public static void insertUser(User user) throws SQLException{
-        // String sql = "INSERT INTO person (nom, prenom, login, password) VALUES (" + user.getNom() + ", " + user.getPrenom() + ", " + user.getLogin() + ", " + user.getPassword() + "";
-        // A ne pas utiliser -> faille d'injection SQL
 
-        
-    }
     
     public static Person getByLoginAndPassword(String login, String password) throws SQLException{
     Person p = null;
