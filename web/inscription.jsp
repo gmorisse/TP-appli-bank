@@ -44,7 +44,7 @@
                         <input type="password" name="pwd" class="form-control" />
                     </div>
                     <button type="submit" class="btn btn-block btn-info">Inscription</button>
-                    <button type="button" onclick="window.location.href='index.jsp'" class="btn btn-block btn-primary">Se connecter ?</button>
+                    <button type="button" onclick="window.location.href='connexion'" class="btn btn-block btn-primary">Se connecter ?</button>
                 </div>
             </form>
         </div>
