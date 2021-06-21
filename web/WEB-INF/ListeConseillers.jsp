@@ -40,6 +40,26 @@
         
         <h3 class="text-center titre-perso mt-4">Liste des Conseillers</h3>
         
+        <br>
+        
+        <div>
+            <div class="row">
+                <c:forEach var="n" items="${listeConseillers}">
+                    <div class="col-sm-4">
+                        <div class="card my-font-family p-2">
+                            <p class="text-info">Nom : ${n.nom}</p>
+                            <p class="text-info">Prenom : ${n.prenom}</p>
+                            <p class="text-info">Login : ${n.login}</p>
+                            <p class="text-info">Mot de Passe : ${n.password}</p>
+                            <p class="text-info">Adresse e-mail : ${n.mail}</p>
+                        </div>
+                    </div>
+                 </c:forEach>
+            </div>
+        </div>
+        
+        <br>
+        
         <div>
              <button type="button" onclick="window.location.href = 'Admin'" class="btn btn-block btn-primary">Retour</button>
         </div>

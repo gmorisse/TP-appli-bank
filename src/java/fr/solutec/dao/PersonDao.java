@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -184,8 +185,33 @@ public class PersonDao {
 
         return valide;
     }
+    
+    public static List<Person> getAllConseiller() throws SQLException{
+        List<Person> listeConseillers = new ArrayList<>();
+        
+        String sql = "SELECT * FROM person p INNER JOIN conseiller c ON p.idPerson = c.Person_idPerson";
+        
+        Connection connexion = AccessBD.getConnexion();
+        Statement requete = connexion.createStatement();
+        
+        ResultSet rs = requete.executeQuery(sql);
+        while (rs.next()){
+                      
+            Person p = new Person();
+            p.setId(rs.getInt("idPerson"));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setLogin(rs.getString("login"));
+            p.setMail(rs.getString("mail"));
+            
+            listeConseillers.add(p);
+        }
+        
+        return listeConseillers;
 
-    public static List<Person> getAllDemandesValidation() throws SQLException {
+    }
+    
+    public static List<Person> getAllDemandesValidation() throws SQLException{
         List<Person> demandesComptes = new ArrayList();
 
         String sql = "SELECT * FROM client c INNER JOIN person p ON c.Person_idPerson = p.idperson WHERE c.valide = FALSE";
@@ -229,13 +255,15 @@ public class PersonDao {
         requete2.setInt(4, idPerson);
         requete2.setInt(5, idConseiller);
         requete2.execute();
+        
 
     }
 
-    public static List<Person> getAllClient(Person p) throws SQLException {
+    public static List<Person> getAllClient(Person p) throws SQLException{
         List<Person> clients = new ArrayList();
 
-        String sql = "SELECT * FROM person p INNER JOIN client ct ON ct.Person_idPerson=p.idPerson INNER JOIN compte cm ON cm.Client_idClient=ct.idClient WHERE cm.idConseiller = ?;";
+        String sql = "SELECT* from person p INNER JOIN client ct ON ct.Person_idPerson = p.idPerson INNER JOIN compte cm ON cm.Client_idClient=ct.idClient WHERE cm.idConseiller = ?;";
+
         Connection connection = AccessBD.getConnexion();
         PreparedStatement prepare = connection.prepareStatement(sql);
         prepare.setInt(1, getIdConseiller(p));
@@ -255,10 +283,11 @@ public class PersonDao {
 
         return clients;
     }
-
-    public static int getIdConseiller(Person p) throws SQLException {
-        int id = 0;
-        String sql = "SELECT * FROM conseiller c INNER JOIN person p ON p.idPerson=c.Person_idPerson WHERE p.idPerson=?";
+    
+    
+    public static int getIdConseiller(Person p) throws SQLException{
+        int retour = 0;
+        String sql = "SELECT * FROM conseiller co INNER JOIN person p ON p.idPerson=co.Person_idPerson WHERE p.idPerson = ?";
 
         Connection connexion = AccessBD.getConnexion();
 
@@ -268,9 +297,9 @@ public class PersonDao {
         ResultSet rs = requete.executeQuery();
 
         if (rs.next()) {
-            id = rs.getInt("idConseiller");
+            retour = rs.getInt("idConseiller");
         }
 
-        return id;
+        return retour;
     }
 }
