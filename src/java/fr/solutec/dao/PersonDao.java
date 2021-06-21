@@ -65,7 +65,7 @@ public class PersonDao {
         requete2.execute();
 
     }
-    
+
     public static void insertConseiller(Person person) throws SQLException {
         String sql1 = "INSERT INTO person (nom, prenom, login, password, mail) VALUES (?, ?, ?, ?, ?)";
 
@@ -246,15 +246,15 @@ public class PersonDao {
             p.setPrenom(rs.getString("prenom"));
             p.setLogin(rs.getString("login"));
             p.setMail(rs.getString("mail"));
-            
+
             demandesComptes.add(p);
         }
 
         return demandesComptes;
     }
-    
-    public static void validationCompteClient(int idPerson, int idConseiller) throws SQLException{
-        
+
+    public static void validationCompteClient(int idPerson, int idConseiller) throws SQLException {
+
         String sql1 = "UPDATE client c SET valide = TRUE WHERE c.Person_idPerson = ?";
 
         Connection connexion = AccessBD.getConnexion();
@@ -262,7 +262,7 @@ public class PersonDao {
         PreparedStatement requete1 = connexion.prepareStatement(sql1);
         requete1.setInt(1, idPerson);
         requete1.execute();
-        
+
         String sql2 = "INSERT INTO compte (numCompte, soldeCompte, numCarte, Client_idClient, idConseiller) VALUES (?, ?, ?, ?, ?)";
 
         PreparedStatement requete2 = connexion.prepareStatement(sql2);
@@ -274,5 +274,49 @@ public class PersonDao {
         requete2.execute();
         
 
+    }
+
+    public static List<Person> getAllClient(Person p) throws SQLException{
+        List<Person> clients = new ArrayList();
+
+        String sql = "SELECT* from person p INNER JOIN client ct ON ct.Person_idPerson = p.idPerson INNER JOIN compte cm ON cm.Client_idClient=ct.idClient WHERE cm.idConseiller = ?;";
+
+        Connection connection = AccessBD.getConnexion();
+        PreparedStatement prepare = connection.prepareStatement(sql);
+        prepare.setInt(1, getIdConseiller(p));
+        ResultSet rs = prepare.executeQuery();
+
+        while (rs.next()) {
+
+            Person person = new Person();
+            person.setId(rs.getInt("idperson"));
+            person.setNom(rs.getString("nom"));
+            person.setPrenom(rs.getString("prenom"));
+            person.setLogin(rs.getString("login"));
+            person.setMail(rs.getString("mail"));
+
+            clients.add(person);
+        }
+
+        return clients;
+    }
+    
+    
+    public static int getIdConseiller(Person p) throws SQLException{
+        int retour = 0;
+        String sql = "SELECT * FROM conseiller co INNER JOIN person p ON p.idPerson=co.Person_idPerson WHERE p.idPerson = ?";
+
+        Connection connexion = AccessBD.getConnexion();
+
+        PreparedStatement requete = connexion.prepareStatement(sql);
+        requete.setInt(1, p.getId());
+
+        ResultSet rs = requete.executeQuery();
+
+        if (rs.next()) {
+            retour = rs.getInt("idConseiller");
+        }
+
+        return retour;
     }
 }

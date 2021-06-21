@@ -40,7 +40,7 @@ public class ConseillerValidationComptes extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConseillerValidationComptes</title>");            
+            out.println("<title>Servlet ConseillerValidationComptes</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ConseillerValidationComptes at " + request.getContextPath() + "</h1>");
@@ -61,7 +61,10 @@ public class ConseillerValidationComptes extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession(true);
+        Person p = (Person) session.getAttribute("userConnect");
+        if (p != null) {
             try {
                 request.setAttribute("demandesValidation", PersonDao.getAllDemandesValidation());
                 request.getRequestDispatcher("WEB-INF/validationComptes.jsp").forward(request, response);
@@ -70,6 +73,9 @@ public class ConseillerValidationComptes extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 out.println("exp : " + e.getMessage());
             }
+        } else {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
 
     }
 

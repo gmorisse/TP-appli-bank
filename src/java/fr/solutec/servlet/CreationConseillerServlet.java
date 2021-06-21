@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,7 +40,7 @@ public class CreationConseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreationConseillerServlet</title>");            
+            out.println("<title>Servlet CreationConseillerServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet CreationConseillerServlet at " + request.getContextPath() + "</h1>");
@@ -60,7 +61,19 @@ public class CreationConseillerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("Creation_Conseiller.jsp").forward(request, response);
+        HttpSession session = request.getSession(true);
+        Person p = (Person) session.getAttribute("userConnect");
+        if (p != null) {
+            try {
+                request.getRequestDispatcher("Creation_Conseiller.jsp").forward(request, response);
+
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("exp : " + e.getMessage());
+            }
+        } else {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -91,8 +104,8 @@ public class CreationConseillerServlet extends HttpServlet {
             }
             request.getRequestDispatcher("WEB-INF/Admin.jsp").forward(request, response);
         } else {
-                request.setAttribute("msgInscription", "Veuillez remplir tous les champs");
-                request.getRequestDispatcher("Creation_Conseiller.jsp").forward(request, response);
+            request.setAttribute("msgInscription", "Veuillez remplir tous les champs");
+            request.getRequestDispatcher("Creation_Conseiller.jsp").forward(request, response);
         }
     }
 
