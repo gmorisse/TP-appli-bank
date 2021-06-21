@@ -5,6 +5,8 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.dao.*;
+import fr.solutec.model.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -72,7 +74,26 @@ public class CreationConseillerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String login = request.getParameter("login");
+        String password = request.getParameter("pwd");
+        String mail = request.getParameter("mail");
+
+        Person p = new Person(1, nom, prenom, login, password, mail);
+        if (PersonDao.inscriptionValide(p)) {
+            try {
+                PersonDao.insertConseiller(p);
+
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.print("exp : " + e.getMessage());
+            }
+            request.getRequestDispatcher("WEB-INF/Admin.jsp").forward(request, response);
+        } else {
+                request.setAttribute("msgInscription", "Veuillez remplir tous les champs");
+                request.getRequestDispatcher("Creation_Conseiller.jsp").forward(request, response);
+        }
     }
 
     /**
