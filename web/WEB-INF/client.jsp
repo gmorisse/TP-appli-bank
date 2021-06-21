@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Client's page</title>
+        <title>Conseiller</title>
         <link rel="stylesheet" href="CSS/style.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         <link rel="stylesheet"
@@ -27,23 +27,40 @@
         <div>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="">Client</a>
+                    <a class="navbar-brand" href="">Espace client</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav nav-fill w-100 ">
-                            <a class="nav-item nav-link" href="info"> <i style="color: steelblue" class="fa fa-plus fa-2x"> Information compte</i> </a>                        
-                            <a class="nav-item nav-link" href="profil"> <i style="color: steelblue" class="fa fa-eye-slash fa-2x"> Accéder à votre profil</i> </a>
-                            <a class="nav-item nav-link" href="contactConseiller"><i style="color: steelblue" class="fa fa-eye fa-2x"> Contact conseiller</i> </a>
+                            <a class="nav-item nav-link" href="info"> <i style="color: steelblue" class="fa fa-user fa-2x"> Information compte</i> </a>                        
+                            <a class="nav-item nav-link" href="profil"> <i style="color: steelblue" class="fa fa-id-card fa-2x"> Accéder à votre profil</i> </a>
+                            <a class="nav-item nav-link" href="contactConseiller"><i style="color: steelblue" class="fa fa-comment fa-2x"> Contact conseiller</i> </a>
                             <a class="nav-item nav-link" href="deco"> <i style="color: tomato" class="fa fa-lock fa-2x"></i> </a>                        
                         </div>
                     </div>
                 </div>
             </nav>
         </div>
-        <div> Bonjour Joël propriétaire de la lambo </div>
+        <div class="container">
+            <h1 class="my-font-family titre-perso center">Bienvenue dans votre espace client</h1>
+        </div>
+        <div>
+            <div class="container">
+                <row>
+                    <col-sm-2>
+                        <p> C'est dans cet espace que vous pouvez consulter, modifier votre profil ou encore contacter un conseiller.</p>
+                    </col-sm-2>
+                </row>
+                <br>
+                <row>
+                    <col-sm-2>
+                        <p>Pour utiliser les fonctionnalités du site, veuillez cliquer sur les menus en haut afin de pouvoir utiliser pleinement votre espace client.</p>
+                    </col-sm-2>
+                </row>
+            </div>
+        </div>
 
     </body>
 </html>

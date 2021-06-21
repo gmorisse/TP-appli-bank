@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Conseiller
-    Created on : 18 juin 2021, 17:03:31
+    Document   : navBarConseiller
+    Created on : 21 juin 2021, 10:38:20
     Author     : PC
 --%>
 
@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-                        <link rel="stylesheet" href="CSS/style.css" />
+                <link rel="stylesheet" href="CSS/style.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         <link rel="stylesheet"
               href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
@@ -21,8 +21,34 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
     </head>
     <body>
-         <%@include file="navBarConseiller.jsp" %> 
-         
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Espace Conseiller</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"               
+                        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">          
+                        <span class="navbar-toggler-icon"></span>       
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav nav-fill w-100">
+                            <a class="nav-item nav-link" href="Deco"><i class="fa fa-lock fa-2x" style="color: tomato"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <button type="button" onclick="window.location.href='ConseillerValidationComptes'" class="btn btn-block btn-primary">Demande de créations de compte</button>
+                <button type="button" onclick="window.location.href='**'" class="btn btn-block btn-primary">**</button>
+            </div>
+            <div class="col-sm-6">
+                <button type="button" onclick="window.location.href='**'" class="btn btn-block btn-primary">**</button>
+                <button type="button" onclick="window.location.href='**'" class="btn btn-block btn-primary">**</button>
+            </div>
+        </div>
+        
+        
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
