@@ -40,7 +40,7 @@ public class ConseillerAffichageClients extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConseillerAffichageClients</title>");            
+            out.println("<title>Servlet ConseillerAffichageClients</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ConseillerAffichageClients at " + request.getContextPath() + "</h1>");
@@ -61,8 +61,10 @@ public class ConseillerAffichageClients extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                HttpSession session = request.getSession(true);
-                Person p = (Person) session.getAttribute("userConnect");
+
+        HttpSession session = request.getSession(true);
+        Person p = (Person) session.getAttribute("userConnect");
+        if (p != null) {
             try {
                 request.setAttribute("clientsGeres", PersonDao.getAllClient(p));
                 request.getRequestDispatcher("WEB-INF/ConseillerAffichageClient.jsp").forward(request, response);
@@ -71,6 +73,9 @@ public class ConseillerAffichageClients extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 out.println("exp : " + e.getMessage());
             }
+        } else {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
 
     }
 

@@ -5,6 +5,7 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.model.Person;
 import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,7 +40,7 @@ public class ConseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConseillerServlet</title>");            
+            out.println("<title>Servlet ConseillerServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ConseillerServlet at " + request.getContextPath() + "</h1>");
@@ -60,7 +61,19 @@ public class ConseillerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-request.getRequestDispatcher("WEB-INF/Conseiller.jsp").forward(request, response);
+        HttpSession session = request.getSession(true);
+        Person p = (Person) session.getAttribute("userConnect");
+        if (p != null) {
+            try {
+                request.getRequestDispatcher("WEB-INF/Conseiller.jsp").forward(request, response);
+
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("exp : " + e.getMessage());
+            }
+        } else {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
     /**
