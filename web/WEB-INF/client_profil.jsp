@@ -56,19 +56,19 @@
 
             <div class="form-group mt-4">
                 <label>Nom</label>
-                <input type="text" class="form-control" name="nom" placeholder="${userConnecter.nom}">
+                <input type="text" class="form-control" name="nom" placeholder="${userConnect.nom}">
             </div>
             <div class="form-group mt-4">
                 <label>Prénom</label>
-                <input type="text" class="form-control" name="prenom" placeholder="${userConnecter.prenom}">
+                <input type="text" class="form-control" name="prenom" placeholder="${userConnect.prenom}">
             </div>
             <div class="form-group mt-4">
                 <label>Mail</label>
-                <input type="text" class="form-control" name="mail" placeholder="${userConnecter.mail}">
+                <input type="text" class="form-control" name="mail" placeholder="${userConnect.mail}">
             </div>
             <div class="form-group mt-4">
                 <label>Login</label>
-                <input type="text" class="form-control" name="login" placeholder="${userConnecter.login}">
+                <input type="text" class="form-control" name="login" placeholder="${userConnect.login}">
             </div>
             <div class="container center">
             <button type="submit" class="btn btn-primary">Soumettre</button>

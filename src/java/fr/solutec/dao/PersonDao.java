@@ -111,10 +111,10 @@ public class PersonDao {
 
     }
 
-    public static void modifyConseiller (Person person) throws SQLException {
-        
+    public static void modifyConseiller(Person person) throws SQLException {
+
         String sql = "UPDATE person SET nom = '?', prenom = '?', login = '?', mail = '?' WHERE idPerson = '?' ";
-        
+
         Connection connexion = AccessBD.getConnexion();
 
         PreparedStatement requete = connexion.prepareStatement(sql);
@@ -126,7 +126,7 @@ public class PersonDao {
 
         requete.execute();
     }
-    
+
     public static boolean isAdmin(Person p) throws SQLException {
         boolean isAdmin = false;
         String sql = "SELECT * FROM admin a INNER JOIN person p ON p.idPerson = a.Person_idPerson WHERE p.idPerson = ? ";
@@ -339,19 +339,20 @@ public class PersonDao {
         return retour;
     }
 
-    public static void changeInformationClient(String nom, String prenom, String mail, Integer id) throws SQLException {
-        String sql = "UPDATE person SET nom=?, prenom=?, mail=? WHERE idPerson=?";
+    public static void modifyClient(Person p) throws SQLException {
+        String sql = "UPDATE person SET nom = '?', prenom = '?', mail = '?' WHERE idPerson = '?' ";
 
         Connection connexion = AccessBD.getConnexion();
 
         PreparedStatement requete = connexion.prepareStatement(sql);
-        requete.setString(1, nom);
-        requete.setString(2, prenom);
-        requete.setString(3, mail);
-        requete.setInt(4, id);
-        
+        requete.setString(1, p.getNom());
+        requete.setString(2, p.getPrenom());
+        requete.setString(3, p.getMail());
+        requete.setInt(4, p.getId());
+
         requete.execute();
     }
+
     public static void majHistoriqueConnexion(Person p) throws SQLException {
         String sql1 = "INSERT INTO historiqueconnexion (dateConnexion, idPerson) VALUES (?, ?)";
         Calendar calendar = Calendar.getInstance();

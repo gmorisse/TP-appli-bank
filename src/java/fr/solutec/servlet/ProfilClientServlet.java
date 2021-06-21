@@ -81,9 +81,22 @@ public class ProfilClientServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         Person pConnect = (Person) session.getAttribute("userConnect");
-        if (pConnect != null) {
+        
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String mail = request.getParameter("mail");
+        Integer id = pConnect.getId();
+        
+        Person p = new Person();
+        
+        p.setNom(nom);
+        p.setPrenom(prenom);
+        p.setMail(mail);
+        p.setId(id);
+        if (p != null) {
             try {
-                PersonDao.changeInformationClient(pConnect.getNom(), pConnect.getPrenom(), pConnect.getMail(), pConnect.getId());
+                PersonDao.modifyClient(p);
+                request.getRequestDispatcher("client_profil.jsp").forward(request, response);
             } catch (Exception e) {
                 PrintWriter out = response.getWriter();
                 out.println("exp : " + e.getMessage());
