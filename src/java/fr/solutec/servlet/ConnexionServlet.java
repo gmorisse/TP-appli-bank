@@ -82,6 +82,7 @@ public class ConnexionServlet extends HttpServlet {
 
             if (p != null) {
                 request.getSession(true).setAttribute("userConnect", p);
+                PersonDao.majHistoriqueConnexion(p);
                 //request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
                 
                 if (PersonDao.isAdmin(p)) {
