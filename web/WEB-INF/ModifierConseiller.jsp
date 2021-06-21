@@ -24,12 +24,14 @@
                     </div>
                     <div>
                         <button type='submit' class="btn bt-perso btn-outline-dark">Entrer</button>
+                        <button type='button' onclick="window.location.href = 'Admin'" class="btn bt-perso btn-outline-dark ml-50">Retour</button>
                     </div>
                     <div>
                         <label class="color-red ml-2" nom='msg'>${msg}</label>
                     </div>
                 </div>
-
+            </form>
+            <form class="my-font-family" action="" method="POST">
                 <div class="form-group mt-4">
                     <label>Nom</label>
                     <input type="text" class="form-control" name="nom" value="${nom}">
@@ -46,11 +48,7 @@
                     <label>Email</label>
                     <input type="email" class="form-control" name="email" value="${email}">
                 </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Soumettre</button>
             </form>
         </div>
     </body>
