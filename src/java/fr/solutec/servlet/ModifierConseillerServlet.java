@@ -72,10 +72,14 @@ public class ModifierConseillerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String login = request.getParameter("login");
+        String login = request.getParameter("loginDemande");
         
+        try {
+            
+           
+        } catch (Exception e) {
+        }
         
-        request.getRequestDispatcher("WEB-INF/AfficherConseiller.jsp").forward(request, response);
     }
 
     /**

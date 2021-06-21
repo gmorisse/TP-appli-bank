@@ -38,7 +38,7 @@
                         <div class="col-sm-11">
                             <button type="button" onclick="window.location.href='CreationConseiller'" class="btn btn-block btn-outline-secondary">Créer Conseiller</button>
                             <button type="button" onclick="window.location.href='Désactiver_Conseiller'" class="btn btn-block btn-outline-secondary">Désactiver/Activer Conseiller</button>
-                            <button type="button" onclick="window.location.href='Modifier_Conseiller'" class="btn btn-block btn-outline-secondary">Modifier Conseiller</button>
+                            <button type="button" onclick="window.location.href='ModifierConseiller'" class="btn btn-block btn-outline-secondary">Modifier Conseiller</button>
                             <button type="button" onclick="window.location.href='ListeConseillers'" class="btn btn-block btn-outline-secondary">Liste Conseillers</button>
                         </div>
                     </div>
