@@ -35,7 +35,7 @@ public class PersonDao {
             p.setNom(rs.getString("nom"));
             p.setPrenom(rs.getString("prenom"));
             p.setLogin(rs.getString("login"));
-            p.setLogin(rs.getString("mail"));
+            p.setMail(rs.getString("mail"));
         }
         return p;
     }
