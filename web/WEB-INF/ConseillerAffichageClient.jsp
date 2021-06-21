@@ -1,6 +1,6 @@
 <%-- 
-    Document   : validationComptes
-    Created on : 21 juin 2021, 10:37:05
+    Document   : ConseillerAffichageClient
+    Created on : 21 juin 2021, 14:08:39
     Author     : PC
 --%>
 
@@ -24,24 +24,24 @@
     <body>
         <%@include file="navBarConseiller.jsp" %>  
         <div>
-            
+
             <div class="mt-4 container">
-                <h1>Validation des comptes</h1>
-            <br>
+                <h1>Gestion des clients</h1>
+                <br>
                 <br><br>
                 <div class="row">
-                    <c:forEach var="n" items="${demandesValidation}">
+                    <c:forEach var="n" items="${clientsGeres}">
                         <div class="col-sm-4 pb-5">
-                            <div class="card my-font-family p-2 card-shadow">
+                            <div class="card my-font-family p-2 card-shadow ">
                                 <div class="row">
                                     <div class="col-sm-10">
-                                        <form action="validationClient" method="POST">
+                                        <form action="ConseillerAffichageClients" method="POST">
                                             <input type="hidden" value="${n.id}" name="idPerson" />
                                             <p class="label-perso">Nom : ${n.nom} </p>
                                             <p class="label-perso">Prenom : ${n.prenom} </p>
                                             <p class="label-perso">Login : ${n.login} </p>
                                             <p class="label-perso">Mail : ${n.mail} </p>
-                                            <button type="submit" class="btn btn-block btn-primary">Valider</button>
+                                            <button type="submit" class="btn btn-block btn-primary">Consulter</button>
                                         </form>
                                     </div>
 

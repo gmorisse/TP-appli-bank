@@ -5,8 +5,8 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.dao.PersonDao;
 import fr.solutec.model.Person;
-import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author PC
  */
-@WebServlet(name = "ConseillerServlet", urlPatterns = {"/Conseiller"})
-public class ConseillerServlet extends HttpServlet {
+@WebServlet(name = "ConseillerAffichageClients", urlPatterns = {"/ConseillerAffichageClients"})
+public class ConseillerAffichageClients extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +40,10 @@ public class ConseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConseillerServlet</title>");
+            out.println("<title>Servlet ConseillerAffichageClients</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConseillerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ConseillerAffichageClients at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,11 +61,13 @@ public class ConseillerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession(true);
         Person p = (Person) session.getAttribute("userConnect");
         if (p != null) {
             try {
-                request.getRequestDispatcher("WEB-INF/Conseiller.jsp").forward(request, response);
+                request.setAttribute("clientsGeres", PersonDao.getAllClient(p));
+                request.getRequestDispatcher("WEB-INF/ConseillerAffichageClient.jsp").forward(request, response);
 
             } catch (Exception e) {
                 PrintWriter out = response.getWriter();
@@ -74,6 +76,7 @@ public class ConseillerServlet extends HttpServlet {
         } else {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+
     }
 
     /**
