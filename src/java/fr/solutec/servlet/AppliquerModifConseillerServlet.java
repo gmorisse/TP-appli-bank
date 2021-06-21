@@ -14,14 +14,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Valerie
+ * @author btern
  */
-@WebServlet(name = "ProfilClientServlet", urlPatterns = {"/ProfilClient"})
-public class ProfilClientServlet extends HttpServlet {
+@WebServlet(name = "AppliquerModifConseillerServlet", urlPatterns = {"/AppliquerModifConseiller"})
+public class AppliquerModifConseillerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class ProfilClientServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProfilClientServlet</title>");
+            out.println("<title>Servlet AppliquerModifConseillerServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProfilClientServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AppliquerModifConseillerServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,11 +60,7 @@ public class ProfilClientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        Person pConnect = (Person) session.getAttribute("userConnect");
-        request.setAttribute("userConnecter", pConnect);
-        request.getRequestDispatcher("WEB-INF/client_profil.jsp").forward(request, response);
-
+        processRequest(request, response);
     }
 
     /**
@@ -79,18 +74,27 @@ public class ProfilClientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        Person pConnect = (Person) session.getAttribute("userConnect");
-        if (pConnect != null) {
+        
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String login = request.getParameter("login");
+        String mail = request.getParameter("mail");
+        
+        String password = "Fill";
+
+        Person p = new Person(1, nom, prenom, login, password, mail);
+        if (PersonDao.inscriptionValide(p)) {
             try {
-                PersonDao.changeInformationClient(pConnect.getNom(), pConnect.getPrenom(), pConnect.getMail(), pConnect.getId());
+                PersonDao.modifyConseiller(p);
+
             } catch (Exception e) {
                 PrintWriter out = response.getWriter();
-                out.println("exp : " + e.getMessage());
-
+                out.print("exp : " + e.getMessage());
             }
+            request.getRequestDispatcher("WEB-INF/Admin.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("client_profil.jsp").forward(request, response);
+            request.setAttribute("msgInscription", "Veuillez remplir tous les champs");
+            request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
         }
     }
 

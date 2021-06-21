@@ -43,8 +43,8 @@ public class PersonDao {
         }
         return p;
     }
-    
-     public static Person getByLogin(String login) throws SQLException {
+
+    public static Person getByLogin(String login) throws SQLException {
 
         // MODIFIER REQUETE
         String sql = "SELECT * FROM person WHERE login =?";
@@ -111,6 +111,22 @@ public class PersonDao {
 
     }
 
+    public static void modifyConseiller (Person person) throws SQLException {
+        
+        String sql = "UPDATE person SET nom = '?', prenom = '?', login = '?', mail = '?' WHERE idPerson = '?' ";
+        
+        Connection connexion = AccessBD.getConnexion();
+
+        PreparedStatement requete = connexion.prepareStatement(sql);
+        requete.setString(1, person.getNom());
+        requete.setString(2, person.getPrenom());
+        requete.setString(3, person.getLogin());
+        requete.setString(4, person.getMail());
+        requete.setInt(5, person.getId());
+
+        requete.execute();
+    }
+    
     public static boolean isAdmin(Person p) throws SQLException {
         boolean isAdmin = false;
         String sql = "SELECT * FROM admin a INNER JOIN person p ON p.idPerson = a.Person_idPerson WHERE p.idPerson = ? ";
@@ -221,7 +237,7 @@ public class PersonDao {
 
             Person p = new Person();
             p.setId(rs.getInt("idPerson"));
-            p.setNom(rs.getString("nom"));
+            p.setNom(rs.getString("nom").toUpperCase());
             p.setPrenom(rs.getString("prenom"));
             p.setLogin(rs.getString("login"));
             p.setMail(rs.getString("mail"));
@@ -323,6 +339,19 @@ public class PersonDao {
         return retour;
     }
 
+    public static void changeInformationClient(String nom, String prenom, String mail, Integer id) throws SQLException {
+        String sql = "UPDATE person SET nom=?, prenom=?, mail=? WHERE idPerson=?";
+
+        Connection connexion = AccessBD.getConnexion();
+
+        PreparedStatement requete = connexion.prepareStatement(sql);
+        requete.setString(1, nom);
+        requete.setString(2, prenom);
+        requete.setString(3, mail);
+        requete.setInt(4, id);
+        
+        requete.execute();
+    }
     public static void majHistoriqueConnexion(Person p) throws SQLException {
         String sql1 = "INSERT INTO historiqueconnexion (dateConnexion, idPerson) VALUES (?, ?)";
         Calendar calendar = Calendar.getInstance();
@@ -339,5 +368,46 @@ public class PersonDao {
 
         requete1.execute();
 
+    }
+    
+    public static Person getById(int id)throws SQLException{
+        String sql = "SELECT * FROM person WHERE idPerson =?";
+        Person p = new Person();
+        Connection connexion = AccessBD.getConnexion();
+        PreparedStatement requete = connexion.prepareStatement(sql);
+        requete.setInt(1, id);
+        ResultSet rs = requete.executeQuery();
+        if (rs.next()) {
+            p.setId(rs.getInt("idPerson"));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setLogin(rs.getString("login"));
+            p.setMail(rs.getString("mail"));
+        }
+        return p;
+    }
+    
+    
+    public static List<Connexion> getHistorique(Person p)throws SQLException{
+        List<Connexion> historique = new ArrayList();
+
+        String sql = "SELECT * FROM historiqueconnexion WHERE idPerson = ?";
+
+        Connection connection = AccessBD.getConnexion();
+        PreparedStatement prepare = connection.prepareStatement(sql);
+        prepare.setInt(1, p.getId());
+        ResultSet rs = prepare.executeQuery();
+
+        while (rs.next()) {
+
+            Connexion c = new Connexion();
+            c.setIdPerson(rs.getInt("id"));
+            c.setDate(rs.getDate("dateConnexion"));
+            c.setIdPerson(rs.getInt("idPerson"));
+
+            historique.add(c);
+        }
+
+        return historique;
     }
 }
