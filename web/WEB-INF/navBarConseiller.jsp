@@ -43,7 +43,7 @@
                 <button type="button" onclick="window.location.href='ConseillerAffichageClients'" class="btn btn-block btn-primary">Gestion des clients</button>
             </div>
             <div class="col-sm-6">
-                <button type="button" onclick="window.location.href='**'" class="btn btn-block btn-primary">**</button>
+                <button type="button" onclick="window.location.href='ConseillerGestionDecouverts'" class="btn btn-block btn-primary">Gestion des découverts</button>
                 <button type="button" onclick="window.location.href='**'" class="btn btn-block btn-primary">**</button>
             </div>
         </div>
