@@ -112,7 +112,7 @@ public class PersonDao {
     
         if (rs.next()) {
             p = new Person();
-            p.setId(rs.getInt("idperson"));
+            p.setId(rs.getInt("idPerson"));
             p.setNom(rs.getString("nom"));
             p.setPrenom(rs.getString("prenom"));
             p.setLogin(rs.getString("login"));
