@@ -5,12 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-                <link rel="stylesheet" href="CSS/style.css" />
+        <link rel="stylesheet" href="CSS/style.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         <link rel="stylesheet"
               href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
@@ -23,7 +24,34 @@
     <body>
         <%@include file="navBarConseiller.jsp" %>  
         <div>
-            <h1>Validation des comptes</h1>
+            
+            <div class="mt-4 container">
+                <h1>Validation des comptes</h1>
+            <br>
+                <br><br>
+                <div class="row">
+                    <c:forEach var="n" items="${demandesValidation}">
+                        <div class="col-sm-4">
+                            <div class="card my-font-family p-2 card-shadow">
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <form action="validationClient" method="POST">
+                                            <input type="hidden" value="${n.id}" name="idPerson" />
+                                            <p class="label-perso">Nom : ${n.nom} </p>
+                                            <p class="label-perso">Prenom : ${n.prenom} </p>
+                                            <p class="label-perso">Login : ${n.login} </p>
+                                            <p class="label-perso">Mail : ${n.mail} </p>
+                                            <button type="submit" class="btn btn-block btn-primary">Valider</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+
+                </div>
+            </div>
         </div>
     </body>
 </html>

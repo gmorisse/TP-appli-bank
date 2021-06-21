@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Pierre
+ * @author btern
  */
-@WebServlet(name = "ModifierConseillerServlet", urlPatterns = {"/ModifierConseiller"})
-public class ModifierConseillerServlet extends HttpServlet {
+@WebServlet(name = "ListeConseillersServlet", urlPatterns = {"/ListeConseillers"})
+public class ListeConseillersServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class ModifierConseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ModifierConseillerServlet</title>");            
+            out.println("<title>Servlet ListeConseillersServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ModifierConseillerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ListeConseillersServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,7 +58,7 @@ public class ModifierConseillerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/ListeConseillers.jsp").forward(request, response);
     }
 
     /**
@@ -72,10 +72,7 @@ public class ModifierConseillerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String login = request.getParameter("login");
-        
-        
-        request.getRequestDispatcher("WEB-INF/AfficherConseiller.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

@@ -17,7 +17,7 @@
     <body>
         <%@include file="navbarAdmin.jsp" %> 
         
-            <div class="card mt-4 ml-4 card-shadow" style="width: 40%">
+            <div class="card mt-4 ml-4 card-shadow" style="width: 95%">
                 <div class="card-body">
                     <h3 class="my-font-family center">Votre Menu</h3>
                     <div class="row mt-4">
@@ -38,8 +38,8 @@
                         <div class="col-sm-11">
                             <button type="button" onclick="window.location.href='CreationConseiller'" class="btn btn-block btn-outline-secondary">Créer Conseiller</button>
                             <button type="button" onclick="window.location.href='Désactiver_Conseiller'" class="btn btn-block btn-outline-secondary">Désactiver/Activer Conseiller</button>
-                            <button type="button" onclick="window.location.href='ModifierConseiller'" class="btn btn-block btn-outline-secondary">Modifier Conseiller</button>
-                            <button type="button" onclick="window.location.href='Liste_Conseillers'" class="btn btn-block btn-outline-secondary">Liste Conseillers</button>
+                            <button type="button" onclick="window.location.href='Modifier_Conseiller'" class="btn btn-block btn-outline-secondary">Modifier Conseiller</button>
+                            <button type="button" onclick="window.location.href='ListeConseillers'" class="btn btn-block btn-outline-secondary">Liste Conseillers</button>
                         </div>
                     </div>
                 </div>
