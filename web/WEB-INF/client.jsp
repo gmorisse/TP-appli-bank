@@ -44,22 +44,24 @@
                 </div>
             </nav>
         </div>
-        <div class="container mt-60">
-            <h1 class="my-font-family center" style="color: steelblue">Bienvenue dans votre espace client</h1>
-        </div>
-        <div>
-            <div class="container mt-60">
-                <row>
-                    <col-sm-2>
-                        <p> C'est dans cet espace que vous pouvez consulter, modifier votre profil ou encore contacter un conseiller.</p>
-                    </col-sm-2>
-                </row>
-                <br>
-                <row>
-                    <col-sm-2>
-                        <p>Pour utiliser les fonctionnalités du site, veuillez cliquer sur les menus en haut afin de pouvoir utiliser pleinement votre espace client.</p>
-                    </col-sm-2>
-                </row>
+        <div class="card-shadow container" style="padding: 10px">
+            <div class="container mt-40">
+                <h1 class="my-font-family center" style="color: steelblue">Bienvenue dans votre espace client</h1>
+            </div>
+            <div>
+                <div class="container mt-60">
+                    <row>
+                        <col-sm-2>
+                            <p> C'est dans cet espace que vous pouvez consulter, modifier votre profil ou encore contacter un conseiller.</p>
+                        </col-sm-2>
+                    </row>
+                    <br>
+                    <row>
+                        <col-sm-2>
+                            <p>Pour utiliser les fonctionnalités du site, veuillez cliquer sur les menus en haut afin de pouvoir utiliser pleinement votre espace client.</p>
+                        </col-sm-2>
+                    </row>
+                </div>
             </div>
         </div>
 
