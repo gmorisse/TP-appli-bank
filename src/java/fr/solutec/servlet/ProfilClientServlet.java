@@ -79,8 +79,19 @@ public class ProfilClientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // processRequest(request, response);
+        HttpSession session = request.getSession(true);
+        Person pConnect = (Person) session.getAttribute("userConnect");
+        if (pConnect != null) {
+            try {
+                PersonDao.changeInformationClient(pConnect.getNom(), pConnect.getPrenom(), pConnect.getMail(), pConnect.getId());
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("exp : " + e.getMessage());
 
+            }
+        } else {
+            request.getRequestDispatcher("client_profil.jsp").forward(request, response);
+        }
     }
 
     /**

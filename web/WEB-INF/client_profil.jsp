@@ -68,11 +68,7 @@
             </div>
             <div class="form-group mt-4">
                 <label>Login</label>
-                <input type="text" class="form-control" name="mail" placeholder="${userConnecter.login}">
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <input type="text" class="form-control" name="login" placeholder="${userConnecter.login}">
             </div>
             <div class="container center">
             <button type="submit" class="btn btn-primary">Soumettre</button>
