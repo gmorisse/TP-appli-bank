@@ -24,25 +24,8 @@
     </head>
     <body>
         
-         <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Espace Admin</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"               
-                        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">          
-                        <span class="navbar-toggler-icon"></span>       
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav nav-fill w-100">
-                            <div class="col sm-11"></div>
-                            <a class="nav-item nav-link col-sm-1" href="Deco"><i class="fa fa-lock fa-2x" style="color: tomato"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
+        <%@include file="navbarAdmin.jsp" %>
         
-
         <h3 class="text-center titre-perso mt-4">Création de Conseiller</h3>
 
         <div class="container mt-4">

@@ -5,8 +5,8 @@
  */
 package fr.solutec.servlet;
 
-import fr.solutec.dao.*;
-import fr.solutec.model.*;
+import fr.solutec.dao.PersonDao;
+import fr.solutec.model.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,14 +14,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author btern
  */
-@WebServlet(name = "CreationConseillerServlet", urlPatterns = {"/CreationConseiller"})
-public class CreationConseillerServlet extends HttpServlet {
+@WebServlet(name = "AppliquerModifConseillerServlet", urlPatterns = {"/AppliquerModifConseiller"})
+public class AppliquerModifConseillerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class CreationConseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreationConseillerServlet</title>");
+            out.println("<title>Servlet AppliquerModifConseillerServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CreationConseillerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AppliquerModifConseillerServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,19 +60,7 @@ public class CreationConseillerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        Person p = (Person) session.getAttribute("userConnect");
-        if (p != null) {
-            try {
-                request.getRequestDispatcher("WEB-INF/Creation_Conseiller.jsp").forward(request, response);
-
-            } catch (Exception e) {
-                PrintWriter out = response.getWriter();
-                out.println("exp : " + e.getMessage());
-            }
-        } else {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -87,16 +74,18 @@ public class CreationConseillerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String login = request.getParameter("login");
-        String password = request.getParameter("pwd");
         String mail = request.getParameter("mail");
+        
+        String password = "Fill";
 
         Person p = new Person(1, nom, prenom, login, password, mail);
         if (PersonDao.inscriptionValide(p)) {
             try {
-                PersonDao.insertConseiller(p);
+                PersonDao.modifyConseiller(p);
 
             } catch (Exception e) {
                 PrintWriter out = response.getWriter();
@@ -105,7 +94,7 @@ public class CreationConseillerServlet extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/Admin.jsp").forward(request, response);
         } else {
             request.setAttribute("msgInscription", "Veuillez remplir tous les champs");
-            request.getRequestDispatcher("WEB-INF/Creation_Conseiller.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
         }
     }
 

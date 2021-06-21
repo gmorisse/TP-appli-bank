@@ -46,10 +46,7 @@
                     <label>Email</label>
                     <input type="email" class="form-control" name="email" value="${email}">
                 </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
+              
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
