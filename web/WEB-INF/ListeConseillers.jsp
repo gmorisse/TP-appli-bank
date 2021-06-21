@@ -42,17 +42,17 @@
         
         <br>
         
-        <div>
+        <div class="container">
             <div class="row">
                 <c:forEach var="n" items="${listeConseillers}">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="card my-font-family p-2">
                             <div class="row mt-4">
                                 <div class="col-sm-9">
                                     <h3 class="titre-perso">${n.prenom} ${n.nom}</h3>
                                     <br>
                                     <p>Login : ${n.login}</p>
-                                    <p>Mot de Passe : ${n.password}</p>
+                                    <p>Mot de Passe : ******</p>
                                     <p>Adresse e-mail : ${n.mail}</p>
                                 </div>
                                 <div class="col-sm-3">
