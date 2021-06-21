@@ -5,6 +5,8 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.dao.PersonDao;
+import fr.solutec.model.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -75,7 +77,19 @@ public class ModifierConseillerServlet extends HttpServlet {
         String login = request.getParameter("loginDemande");
         
         try {
+            Person p = PersonDao.getByLogin(login);
             
+            if (login.equals(p.getLogin()) && PersonDao.isConseiller(p)){
+                request.setAttribute("nom", p.getNom());
+                request.setAttribute("prenom", p.getPrenom());
+                request.setAttribute("login", p.getLogin());
+                request.setAttribute("email", p.getMail());
+                request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
+            }
+            else {
+                request.setAttribute("msg", "Login incorrect");
+                request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
+            }
            
         } catch (Exception e) {
         }
