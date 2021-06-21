@@ -61,6 +61,9 @@ public class ProfilClientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        Person pConnect = (Person) session.getAttribute("userConnect");
+        request.setAttribute("userConnecter", pConnect);
         request.getRequestDispatcher("WEB-INF/client_profil.jsp").forward(request, response);
 
     }
@@ -77,23 +80,6 @@ public class ProfilClientServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // processRequest(request, response);
-        HttpSession session = request.getSession(true);
-        PrintWriter out = response.getWriter();
-        Person pConnect = (Person) session.getAttribute("userConnect");
-        String login = pConnect.getLogin();
-        String password = pConnect.getPassword();
-        try {
-            Person p = PersonDao.getByLoginAndPassword(login,password);
-            if (p != null) {
-                request.setAttribute("nom", p.getNom());
-                request.setAttribute("prenom", p.getPrenom());
-                request.setAttribute("mail", p.getMail());
-                request.setAttribute("password", p.getPassword());
-
-            }
-        } catch (Exception e) {
-            out.print("err : " + e.getMessage());
-        }
 
     }
 

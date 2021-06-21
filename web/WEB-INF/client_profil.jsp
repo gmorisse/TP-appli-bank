@@ -61,7 +61,7 @@
     </section>
 
 
-    <div class="container mt-4" style="background-color: white">
+    <div class="container mt-120" style="background-color: white">
         <div class="row">
 
             <div class="col-md-4 col-sm-6">
@@ -82,7 +82,7 @@
                     <div>
                         <div>
                             <h4> <i class="fa fa-id-card"> Nom :</i></h4>
-                            <p>${nom}</p>
+                            <p>${userConnecter.nom}</p>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                     <div>
                         <div>
                             <h4> <i class="fa fa-id-card"> Prénom :</i></h4>
-                            <p>${prenom}</p>
+                            <p>${userConnecter.prenom}</p>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                     <div>
                         <div>
                             <h4> <i class="fa fa-id-card"> Mail :</i></h4>
-                            <p>${mail}</p>
+                            <p>${userConnecter.mail}</p>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                     <div>
                         <div>
                             <h4> <i class="fa fa-id-card"> Mot de passe :</i></h4>
-                            <p>${password}</p>
+                            <p>${userConnecter.password}</p>
                         </div>
                     </div>
                 </div>
@@ -130,8 +130,8 @@
 
         </div>
     </div>
-    <div class='mt-60' style="background-color: white">
-        <button type="submit" class="btn btn-block btn-primary" style="color: steelblue">Modifier les informations</button>
+    <div class='mt-120 center'>
+        <button type="submit" class="btn btn-primary" style="color: steelblue; background-color: white">Modifier les informations</button>
     </div>
 
 </body>

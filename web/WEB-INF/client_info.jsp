@@ -29,7 +29,7 @@
         <div>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="" style='color: steelblue'>Votre profil</a>
+                    <a class="navbar-brand" href="" style='color: steelblue'>Votre compte</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -45,7 +45,7 @@
                 </div>
             </nav>
         </div>
-        <section>
+
             <div class="container mt-4" style="background-color:white">
                 <div class="row">
 
@@ -56,10 +56,10 @@
 
                 </div>
             </div>
-        </section>
 
 
-        <div class="container mt-4 card-shadow" style="padding: 10px; background-color: white">
+
+        <div class="container mt-120 card-shadow" style="padding: 10px; background-color: white">
             <div class="row">
 
                 <div class="col-md-4 col-sm-6">
@@ -79,7 +79,7 @@
                     <div>
                         <div>
                             <div>
-                                <h4> <i class="fa fa-id-card"> Nom :</i></h4>
+                                <h4> <i class="fa fa-id-card"> xxx :</i></h4>
                                 <output value="${param['login']}"></output>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                     <div>
                         <div>
                             <div>
-                                <h4> <i class="fa fa-id-card"> Prénom :</i></h4>
+                                <h4> <i class="fa fa-id-card"> xxx :</i></h4>
                                 <output value="${param['login']}"></output>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                     <div>
                         <div>
                             <div>
-                                <h4> <i class="fa fa-id-card"> Mail :</i></h4>
+                                <h4> <i class="fa fa-id-card"> xxx :</i></h4>
                                 <output value="${param['login']}"></output>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                     <div>
                         <div>
                             <div>
-                                <h4> <i class="fa fa-id-card"> Mot de passe :</i></h4>
+                                <h4> <i class="fa fa-id-card"> xxx :</i></h4>
                                 <output value="${param['login']}">*******</output>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                     <div>
                         <div>
                             <div>
-                                <h4> <i class="fa fa-id-card"> Adresse postale :</i></h4>
+                                <h4> <i class="fa fa-id-card"> xxxx :</i></h4>
                                 <output value="${param['login']}"></output>
                             </div>
                         </div>
