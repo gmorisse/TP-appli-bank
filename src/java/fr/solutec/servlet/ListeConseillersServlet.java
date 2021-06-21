@@ -5,8 +5,8 @@
  */
 package fr.solutec.servlet;
 
-import fr.solutec.model.Person;
-import fr.solutec.model.User;
+import fr.solutec.model.*;
+import fr.solutec.dao.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,10 +18,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author PC
+ * @author btern
  */
-@WebServlet(name = "ConseillerServlet", urlPatterns = {"/Conseiller"})
-public class ConseillerServlet extends HttpServlet {
+@WebServlet(name = "ListeConseillersServlet", urlPatterns = {"/ListeConseillers"})
+public class ListeConseillersServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +40,10 @@ public class ConseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConseillerServlet</title>");
+            out.println("<title>Servlet ListeConseillersServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConseillerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ListeConseillersServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,17 +61,20 @@ public class ConseillerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        Person p = (Person) session.getAttribute("userConnect");
-        if (p != null) {
-            try {
-                request.getRequestDispatcher("WEB-INF/Conseiller.jsp").forward(request, response);
-
-            } catch (Exception e) {
+        HttpSession Session = request.getSession(true);
+        Person p = (Person) Session.getAttribute("userConnect");
+        if (p != null){
+            try{
+                request.setAttribute("listeConseillers", PersonDao.getAllConseiller());
+                request.getRequestDispatcher("WEB-INF/ListeConseillers.jsp").forward(request, response);
+            }
+            catch (Exception e){
                 PrintWriter out = response.getWriter();
                 out.println("exp : " + e.getMessage());
             }
-        } else {
+        }
+        else{
+            request.setAttribute("msg", "Veuillez vous connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }

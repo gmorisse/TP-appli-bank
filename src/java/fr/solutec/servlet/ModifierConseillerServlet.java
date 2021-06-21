@@ -6,7 +6,6 @@
 package fr.solutec.servlet;
 
 import fr.solutec.model.Person;
-import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,10 +17,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author PC
+ * @author Pierre
  */
-@WebServlet(name = "ConseillerServlet", urlPatterns = {"/Conseiller"})
-public class ConseillerServlet extends HttpServlet {
+@WebServlet(name = "ModifierConseillerServlet", urlPatterns = {"/ModifierConseiller"})
+public class ModifierConseillerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class ConseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConseillerServlet</title>");
+            out.println("<title>Servlet ModifierConseillerServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConseillerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ModifierConseillerServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,7 +64,7 @@ public class ConseillerServlet extends HttpServlet {
         Person p = (Person) session.getAttribute("userConnect");
         if (p != null) {
             try {
-                request.getRequestDispatcher("WEB-INF/Conseiller.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
 
             } catch (Exception e) {
                 PrintWriter out = response.getWriter();
@@ -87,7 +86,13 @@ public class ConseillerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String login = request.getParameter("loginDemande");
+
+        try {
+
+        } catch (Exception e) {
+        }
+
     }
 
     /**

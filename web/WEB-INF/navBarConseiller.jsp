@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <button type="button" onclick="window.location.href='ConseillerValidationComptes'" class="btn btn-block btn-primary">Demande de créations de compte</button>
-                <button type="button" onclick="window.location.href='**'" class="btn btn-block btn-primary">**</button>
+                <button type="button" onclick="window.location.href='ConseillerAffichageClients'" class="btn btn-block btn-primary">Gestion des clients</button>
             </div>
             <div class="col-sm-6">
                 <button type="button" onclick="window.location.href='**'" class="btn btn-block btn-primary">**</button>

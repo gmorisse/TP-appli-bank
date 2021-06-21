@@ -93,7 +93,7 @@ public class ConnexionServlet extends HttpServlet {
                 else if (PersonDao.isValidUser(p)){
                     response.sendRedirect("Client");
                 }
-                else{
+                else{ 
                 request.setAttribute("msg", "Le compte est en attente de validation par un conseiller");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
