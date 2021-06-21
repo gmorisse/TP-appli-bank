@@ -18,10 +18,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Pierre
+ * @author Valerie
  */
-@WebServlet(name = "ModifierConseillerServlet", urlPatterns = {"/ModifierConseiller"})
-public class ModifierConseillerServlet extends HttpServlet {
+@WebServlet(name = "ProfilClientServlet", urlPatterns = {"/ProfilClient"})
+public class ProfilClientServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +40,10 @@ public class ModifierConseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ModifierConseillerServlet</title>");
+            out.println("<title>Servlet ProfilClientServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ModifierConseillerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProfilClientServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,18 +62,10 @@ public class ModifierConseillerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        Person p = (Person) session.getAttribute("userConnect");
-        if (p != null) {
-            try {
-                request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
+        Person pConnect = (Person) session.getAttribute("userConnect");
+        request.setAttribute("userConnecter", pConnect);
+        request.getRequestDispatcher("WEB-INF/client_profil.jsp").forward(request, response);
 
-            } catch (Exception e) {
-                PrintWriter out = response.getWriter();
-                out.println("exp : " + e.getMessage());
-            }
-        } else {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
     }
 
     /**
@@ -87,25 +79,7 @@ public class ModifierConseillerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String login = request.getParameter("loginDemande");
-
-        try {
-            Person p = PersonDao.getByLogin(login);
-            
-            if (login.equals(p.getLogin()) && PersonDao.isConseiller(p)){
-                request.setAttribute("nom", p.getNom());
-                request.setAttribute("prenom", p.getPrenom());
-                request.setAttribute("login", p.getLogin());
-                request.setAttribute("email", p.getMail());
-                request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
-            }
-            else {
-                request.setAttribute("msg", "Login incorrect");
-                request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
-            }
-           
-        } catch (Exception e) {
-        }
+        // processRequest(request, response);
 
     }
 
