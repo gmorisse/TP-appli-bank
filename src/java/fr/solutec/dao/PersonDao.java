@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -185,6 +186,31 @@ public class PersonDao {
         return valide;
     }
     
+    public static List<Person> getAllConseiller() throws SQLException{
+        List<Person> listeConseillers = new ArrayList<>();
+        
+        String sql = "SELECT * FROM person p INNER JOIN conseiller c ON p.idPerson = c.Person_idPerson";
+        
+        Connection connexion = AccessBD.getConnexion();
+        Statement requete = connexion.createStatement();
+        
+        ResultSet rs = requete.executeQuery(sql);
+        while (rs.next()){
+                      
+            Person p = new Person();
+            p.setId(rs.getInt("idPerson"));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setLogin(rs.getString("login"));
+            p.setMail(rs.getString("mail"));
+            
+            listeConseillers.add(p);
+        }
+        
+        return listeConseillers;
+
+    }
+    
     public static List<Person> getAllDemandesValidation() throws SQLException{
         List<Person> demandesComptes = new ArrayList();
 
@@ -230,5 +256,6 @@ public class PersonDao {
         requete2.setInt(5, idConseiller);
         requete2.execute();
         
+
     }
 }
