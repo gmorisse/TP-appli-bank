@@ -30,22 +30,45 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav nav-fill w-100">
-                            <a class="nav-item nav-link" href="Deco"><i class="fa fa-lock fa-2x" style="color: tomato"></i></a>
+                            <div class="col sm-11"></div>
+                            <a class="nav-item nav-link col-sm-1" href="Deco"><i class="fa fa-lock fa-2x" style="color: tomato"></i></a>
                         </div>
                     </div>
                 </div>
             </nav>
         </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <button type="button" onclick="window.location.href='Créer_Conseiller'" class="btn btn-block btn-primary">Créer Conseiller</button>
-                <button type="button" onclick="window.location.href='Désactiver_Conseiller'" class="btn btn-block btn-primary">Désactiver/Activer Conseiller</button>
+        
+            <div class="card mt-4 ml-4 card-shadow" style="width: 40%">
+                <div class="card-body">
+                    <h3 class="my-font-family center">Votre Menu</h3>
+                    <div class="row mt-4">
+                        <div class="col-sm-1">
+                            <div>
+                                <i class="fa fa-user-plus col-sm-7 fa-2x"></i>
+                            </div>
+                            <div class="mt-3">
+                                <i class="fa fa-user-times col-sm-7 fa-2x"></i>
+                            </div>
+                            <div class="mt-4">
+                                <i class="fa fa-edit col-sm-7 fa-2x"></i>
+                            </div> 
+                            <div class="mt-3">
+                                <i class="fa fa-list-alt col-sm-7 fa-2x"></i>
+                            </div> 
+                        </div>
+                        <div class="col-sm-11">
+                            <button type="button" onclick="window.location.href='Créer_Conseiller'" class="btn btn-block btn-outline-secondary">Créer Conseiller</button>
+                            <button type="button" onclick="window.location.href='Désactiver_Conseiller'" class="btn btn-block btn-outline-secondary">Désactiver/Activer Conseiller</button>
+                            <button type="button" onclick="window.location.href='Modifier_Conseiller'" class="btn btn-block btn-outline-secondary">Modifier Conseiller</button>
+                            <button type="button" onclick="window.location.href='Liste_Conseillers'" class="btn btn-block btn-outline-secondary">Liste Conseillers</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <button type="button" onclick="window.location.href='Modifier_Conseiller'" class="btn btn-block btn-primary">Modifier Conseiller</button>
-                <button type="button" onclick="window.location.href='Liste_Conseillers'" class="btn btn-block btn-primary">Liste Conseillers</button>
-            </div>
-        </div>
+       
+            
+                
+        
         
         
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
