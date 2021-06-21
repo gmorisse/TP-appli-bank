@@ -46,7 +46,7 @@
             <div class="row">
                 <c:forEach var="n" items="${listeConseillers}">
                     <div class="col-sm-4">
-                        <div class="card my-font-family p-2 card-shadow">
+                        <div class="card my-font-family p-2">
                             <p class="text-info">Nom : ${n.nom}</p>
                             <p class="text-info">Prenom : ${n.prenom}</p>
                             <p class="text-info">Login : ${n.login}</p>
