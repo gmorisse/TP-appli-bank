@@ -140,4 +140,17 @@ public class PersonDao {
         return valid;
         
     }
+    
+    
+    public static boolean inscriptionValide(Person p){
+        boolean valide = true;
+        
+        if(p.getLogin().equals("")){valide = false;}
+        if(p.getPassword().equals("")){valide = false;}
+        if(p.getNom().equals("")){valide = false;}
+        if(p.getPrenom().equals("")){valide = false;}
+        if(p.getMail().equals("")){valide = false;}
+        
+        return valide;
+    }
 }

@@ -40,7 +40,7 @@ public class InscriptionServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InscriptionServlet</title>");            
+            out.println("<title>Servlet InscriptionServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet InscriptionServlet at " + request.getContextPath() + "</h1>");
@@ -80,17 +80,22 @@ public class InscriptionServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("pwd");
         String mail = request.getParameter("mail");
-        
+
         Person p = new Person(1, nom, prenom, login, password, mail);
-        
-        try {
-            PersonDao.insertUser(p);
-            
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.print("exp : " + e.getMessage());
-        } 
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        if (PersonDao.inscriptionValide(p)) {
+            try {
+                PersonDao.insertUser(p);
+
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.print("exp : " + e.getMessage());
+            }
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else {
+                request.setAttribute("msgInscription", "veuillez remplir tous les champs");
+                request.getRequestDispatcher("inscription.jsp").forward(request, response);
+        }
+
     }
 
     /**
@@ -102,5 +107,5 @@ public class InscriptionServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
- 
+
 }

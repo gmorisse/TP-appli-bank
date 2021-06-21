@@ -15,15 +15,15 @@
 
         <link rel="stylesheet"
 
-            href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+              href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
 
-            integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+              integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
     </head>
     <body>
-        <h2 class="center titre-perso my-font-family mt-4"><img src="Images/1200px-Circle-icons-dev.svg.png" width="5%" />DEV-3-2021</h2>
-        
+        <h2 class="center titre-perso my-font-family mt-4"><img src="images/banque.jpg" width="5%" />DEV-3-2021</h2>
+
         <h3 class="text-center titre-perso mt-4">Inscription</h3>
-        
+
         <div class="container mt-4">
             <form action="inscription" method="POST">
                 <div style="margin: auto; width: 40%">
@@ -48,7 +48,10 @@
                         <input type="password" name="pwd" class="form-control" />
                     </div>
                     <button type="submit" class="btn btn-block btn-info">Inscription</button>
-                    <button type="button" onclick="window.location.href='connexion'" class="btn btn-block btn-primary">Se connecter ?</button>
+                    <button type="button" onclick="window.location.href = 'connexion'" class="btn btn-block btn-primary">Se connecter ?</button>
+                    <div>
+                        <p class="color-red center">${msgInscription}</p>
+                    </div>
                 </div>
             </form>
         </div>
