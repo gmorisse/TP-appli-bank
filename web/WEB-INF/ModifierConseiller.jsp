@@ -25,23 +25,26 @@
                     <div>
                         <button type='submit' class="btn bt-perso btn-outline-dark">Entrer</button>
                     </div>
+                    <div>
+                        <label class="color-red ml-2" nom='msg'>${msg}</label>
+                    </div>
                 </div>
 
                 <div class="form-group mt-4">
                     <label>Nom</label>
-                    <input type="text" class="form-control" name="nom">
+                    <input type="text" class="form-control" name="nom" value="${nom}">
                 </div>
                 <div class="form-group mt-4">
                     <label>Prénom</label>
-                    <input type="text" class="form-control" name="prenom">
+                    <input type="text" class="form-control" name="prenom" value="${prenom}">
                 </div>
                 <div class="form-group mt-4">
                     <label>Login</label>
-                    <input type="text" class="form-control" name="login">
+                    <input type="text" class="form-control" name="login" value="${login}">
                 </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                <div class="form-group mt-4">
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="email" value="${email}">
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">

@@ -43,6 +43,25 @@ public class PersonDao {
         }
         return p;
     }
+    
+     public static Person getByLogin(String login) throws SQLException {
+
+        // MODIFIER REQUETE
+        String sql = "SELECT * FROM person WHERE login =?";
+        Person p = new Person();
+        Connection connexion = AccessBD.getConnexion();
+        PreparedStatement requete = connexion.prepareStatement(sql);
+        requete.setString(1, login);
+        ResultSet rs = requete.executeQuery();
+        if (rs.next()) {
+            p.setId(rs.getInt("idPerson"));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setLogin(rs.getString("login"));
+            p.setMail(rs.getString("mail"));
+        }
+        return p;
+    }
 
     public static void insertUser(Person person) throws SQLException {
         // String sql = "INSERT INTO person (nom, prenom, login, password) VALUES (" + user.getNom() + ", " + user.getPrenom() + ", " + user.getLogin() + ", " + user.getPassword() + "";

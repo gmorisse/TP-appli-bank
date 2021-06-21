@@ -5,8 +5,6 @@
  */
 package fr.solutec.servlet;
 
-import fr.solutec.dao.PersonDao;
-import fr.solutec.model.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,14 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Pierre
+ * @author Valerie
  */
-@WebServlet(name = "ModifierConseillerServlet", urlPatterns = {"/ModifierConseiller"})
-public class ModifierConseillerServlet extends HttpServlet {
+@WebServlet(name = "InformationClientServlet", urlPatterns = {"/InformationClient"})
+public class InformationClientServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +37,10 @@ public class ModifierConseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ModifierConseillerServlet</title>");
+            out.println("<title>Servlet InformationClientServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ModifierConseillerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet InformationClientServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,19 +58,7 @@ public class ModifierConseillerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        Person p = (Person) session.getAttribute("userConnect");
-        if (p != null) {
-            try {
-                request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
-
-            } catch (Exception e) {
-                PrintWriter out = response.getWriter();
-                out.println("exp : " + e.getMessage());
-            }
-        } else {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+        request.getRequestDispatcher("WEB-INF/client_info.jsp").forward(request, response);
     }
 
     /**
@@ -87,26 +72,7 @@ public class ModifierConseillerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String login = request.getParameter("loginDemande");
-
-        try {
-            Person p = PersonDao.getByLogin(login);
-            
-            if (login.equals(p.getLogin()) && PersonDao.isConseiller(p)){
-                request.setAttribute("nom", p.getNom());
-                request.setAttribute("prenom", p.getPrenom());
-                request.setAttribute("login", p.getLogin());
-                request.setAttribute("email", p.getMail());
-                request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
-            }
-            else {
-                request.setAttribute("msg", "Login incorrect");
-                request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
-            }
-           
-        } catch (Exception e) {
-        }
-
+        processRequest(request, response);
     }
 
     /**
