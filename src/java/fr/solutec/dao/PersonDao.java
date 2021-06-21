@@ -8,11 +8,14 @@ package fr.solutec.dao;
 import fr.solutec.controller.CompteController;
 import fr.solutec.model.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import static java.time.Instant.now;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -108,6 +111,22 @@ public class PersonDao {
 
     }
 
+    public static void modifyConseiller (Person person) throws SQLException {
+        
+        String sql = "UPDATE person SET nom = '?', prenom = '?', login = '?', mail = '?' WHERE idPerson = '?' ";
+        
+        Connection connexion = AccessBD.getConnexion();
+
+        PreparedStatement requete = connexion.prepareStatement(sql);
+        requete.setString(1, person.getNom());
+        requete.setString(2, person.getPrenom());
+        requete.setString(3, person.getLogin());
+        requete.setString(4, person.getMail());
+        requete.setInt(5, person.getId());
+
+        requete.execute();
+    }
+    
     public static boolean isAdmin(Person p) throws SQLException {
         boolean isAdmin = false;
         String sql = "SELECT * FROM admin a INNER JOIN person p ON p.idPerson = a.Person_idPerson WHERE p.idPerson = ? ";
@@ -218,7 +237,7 @@ public class PersonDao {
 
             Person p = new Person();
             p.setId(rs.getInt("idPerson"));
-            p.setNom(rs.getString("nom"));
+            p.setNom(rs.getString("nom").toUpperCase());
             p.setPrenom(rs.getString("prenom"));
             p.setLogin(rs.getString("login"));
             p.setMail(rs.getString("mail"));
@@ -332,6 +351,22 @@ public class PersonDao {
         requete.setInt(4, id);
         
         requete.execute();
-       
+    }
+    public static void majHistoriqueConnexion(Person p) throws SQLException {
+        String sql1 = "INSERT INTO historiqueconnexion (dateConnexion, idPerson) VALUES (?, ?)";
+        Calendar calendar = Calendar.getInstance();
+
+        java.util.Date currentDate = calendar.getTime();
+
+        java.sql.Date date = new java.sql.Date(currentDate.getTime());
+
+        Connection connexion = AccessBD.getConnexion();
+
+        PreparedStatement requete1 = connexion.prepareStatement(sql1);
+        requete1.setDate(1, date);
+        requete1.setInt(2, p.getId());
+
+        requete1.execute();
+
     }
 }

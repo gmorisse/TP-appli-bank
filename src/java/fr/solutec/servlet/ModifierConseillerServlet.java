@@ -105,6 +105,8 @@ public class ModifierConseillerServlet extends HttpServlet {
             }
            
         } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.print("err : " + e.getMessage());
         }
 
     }

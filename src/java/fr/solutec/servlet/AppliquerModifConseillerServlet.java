@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package fr.solutec.servlet;
-import fr.solutec.model.*;
-import fr.solutec.dao.*;
+
+import fr.solutec.dao.PersonDao;
+import fr.solutec.model.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author PC
+ * @author btern
  */
-@WebServlet(name = "ConnexionServlet", urlPatterns = {"/connexion"})
-public class ConnexionServlet extends HttpServlet {
+@WebServlet(name = "AppliquerModifConseillerServlet", urlPatterns = {"/AppliquerModifConseiller"})
+public class AppliquerModifConseillerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +39,10 @@ public class ConnexionServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConnexionServlet</title>");            
+            out.println("<title>Servlet AppliquerModifConseillerServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConnexionServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AppliquerModifConseillerServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,7 +60,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -73,41 +74,28 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
         String login = request.getParameter("login");
-        String password = request.getParameter("pwd");
-        PrintWriter out = response.getWriter();
+        String mail = request.getParameter("mail");
         
-        try {
-            Person p = PersonDao.getByLoginAndPassword(login, password);
+        String password = "Fill";
 
-            if (p != null) {
-                request.getSession(true).setAttribute("userConnect", p);
-                PersonDao.majHistoriqueConnexion(p);
-                //request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
-                
-                if (PersonDao.isAdmin(p)) {
-                    response.sendRedirect("Admin");
-                }
-                else if (PersonDao.isConseiller(p)){
-                    response.sendRedirect("Conseiller");
-                }
-                else if (PersonDao.isValidUser(p)){
-                    response.sendRedirect("Client");
-                }
-                else{ 
-                request.setAttribute("msg", "Le compte est en attente de validation par un conseiller");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-                }
-            } else {
-                request.setAttribute("msg", "identifiant ou mot de passe incorrecte");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+        Person p = new Person(1, nom, prenom, login, password, mail);
+        if (PersonDao.inscriptionValide(p)) {
+            try {
+                PersonDao.modifyConseiller(p);
+
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.print("exp : " + e.getMessage());
             }
-
-        } catch (Exception e) {
-            
-            out.print("err : " + e.getMessage());
+            request.getRequestDispatcher("WEB-INF/Admin.jsp").forward(request, response);
+        } else {
+            request.setAttribute("msgInscription", "Veuillez remplir tous les champs");
+            request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
         }
-        
     }
 
     /**
