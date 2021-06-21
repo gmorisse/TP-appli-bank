@@ -4,6 +4,7 @@
     Author     : Pierre
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,25 +32,35 @@
                     </div>
                 </div>
             </form>
-            <form class="my-font-family" action="AppliquerModifConseiller" method="POST">
-                <div class="form-group mt-4">
-                    <label>Nom</label>
-                    <input type="text" class="form-control" name="nom" value="${nom}">
-                </div>
-                <div class="form-group mt-4">
-                    <label>Prénom</label>
-                    <input type="text" class="form-control" name="prenom" value="${prenom}">
-                </div>
-                <div class="form-group mt-4">
-                    <label>Login</label>
-                    <input type="text" class="form-control" name="login" value="${login}">
-                </div>
-                <div class="form-group mt-4">
-                    <label>Email</label>
-                    <input type="email" class="form-control" name="email" value="${email}">
-                </div>
-                <button type="submit" class="btn btn-primary">Soumettre</button>
-            </form>
+            
+                <c:choose>
+                    <c:when test="${isConseiller == true}">
+                        <form class="my-font-family" action="" method="POST">
+                            <div class="form-group mt-4">
+                                <label>Nom</label>
+                                <input type="text" class="form-control" name="nom" value="${pers.nom}">
+                            </div>
+                            <div class="form-group mt-4">
+                                <label>Prénom</label>
+                                <input type="text" class="form-control" name="prenom" value="${pers.prenom}">
+                            </div>
+                            <div class="form-group mt-4">
+                                <label>Login</label>
+                                <input type="text" class="form-control" name="login" value="${pers.login}">
+                            </div>
+                            <div class="form-group mt-4">
+                                <label>Email</label>
+                                <input type="email" class="form-control" name="email" value="${pers.mail}">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Soumettre</button>
+                        </form>
+                    </c:when>
+                    <c:otherwise>
+                        <div></div>
+                    </c:otherwise>
+                </c:choose>
+            
+
         </div>
     </body>
 </html>
