@@ -93,10 +93,12 @@ public class ModifierConseillerServlet extends HttpServlet {
             Person p = PersonDao.getByLogin(login);
             
             if (login.equals(p.getLogin()) && PersonDao.isConseiller(p)){
-                request.setAttribute("nom", p.getNom());
+                /*request.setAttribute("nom", p.getNom());
                 request.setAttribute("prenom", p.getPrenom());
                 request.setAttribute("login", p.getLogin());
-                request.setAttribute("email", p.getMail());
+                request.setAttribute("email", p.getMail());*/
+                request.setAttribute("pers", p);
+                request.setAttribute("isConseiller", PersonDao.isConseiller(p));
                 request.getRequestDispatcher("WEB-INF/ModifierConseiller.jsp").forward(request, response);
             }
             else {
