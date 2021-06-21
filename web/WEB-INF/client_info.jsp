@@ -25,7 +25,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
     </head>
 
-    <body>
+    <body style="background-color: steelblue">
         <div>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -46,7 +46,7 @@
             </nav>
         </div>
         <section>
-            <div class="container mt-4">
+            <div class="container mt-4" style="background-color:white">
                 <div class="row">
 
                     <div class="col-md-12 col-sm-12">
@@ -59,7 +59,7 @@
         </section>
 
 
-        <div class="container mt-4">
+        <div class="container mt-4 card-shadow" style="padding: 10px; background-color: white">
             <div class="row">
 
                 <div class="col-md-4 col-sm-6">
@@ -138,9 +138,7 @@
 
             </div>
         </div>
-        <div class='mt-60'>
-            <button type="submit" class="btn btn-block btn-primary">Modifier les informations</button>
-        </div>
+
 
     </body>
 </html>

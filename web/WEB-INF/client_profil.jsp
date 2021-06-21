@@ -26,7 +26,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body style="background-color: steelblue">
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -46,9 +46,9 @@
             </div>
         </nav>
     </div>
-    
+
     <section>
-        <div class="container mt-4">
+        <div class="container mt-4" style="background-color:white">
             <div class="row">
 
                 <div class="col-md-12 col-sm-12">
@@ -61,87 +61,77 @@
     </section>
 
 
-    <div class="container mt-4">
+    <div class="container mt-4" style="background-color: white">
         <div class="row">
 
             <div class="col-md-4 col-sm-6">
-                
+
+                <div>
                     <div>
                         <div>
-                            <div>
-                                <img src="" alt="Photo de profil">
-                            </div>
+                            <img src="" alt="Photo de profil">
                         </div>
                     </div>
-                </a>
+                </div>
+
             </div>
 
             <div class="col-md-4 col-sm-6">
-                
+
+                <div>
                     <div>
                         <div>
-                            <div>
-                                <h4> <i class="fa fa-id-card"> Nom :</i></h4>
-                                <output value="${param['login']}"></output>
-                            </div>
+                            <h4> <i class="fa fa-id-card"> Nom :</i></h4>
+                            <p>${nom}</p>
                         </div>
                     </div>
-                </a>
+                </div>
+
             </div>
 
             <div class="col-md-4 col-sm-6">
+                <div>
                     <div>
                         <div>
-                            <div>
-                                <h4> <i class="fa fa-id-card"> Prénom :</i></h4>
-                                <output value="${param['login']}"></output>
-                            </div>
+                            <h4> <i class="fa fa-id-card"> Prénom :</i></h4>
+                            <p>${prenom}</p>
                         </div>
                     </div>
-                </a>
+                </div>
+
             </div>
 
             <div class="col-md-4 col-sm-6 mt-4">
+                <div>
                     <div>
                         <div>
-                            <div>
-                                <h4> <i class="fa fa-id-card"> Mail :</i></h4>
-                                <output value="${param['login']}"></output>
-                            </div>
+                            <h4> <i class="fa fa-id-card"> Mail :</i></h4>
+                            <p>${mail}</p>
                         </div>
                     </div>
-                </a>
+                </div>
+
             </div>
 
             <div class="col-md-4 col-sm-6 mt-4">
+                <div>
                     <div>
                         <div>
-                            <div>
-                                <h4> <i class="fa fa-id-card"> Mot de passe :</i></h4>
-                                <output value="${param['login']}">*******</output>
-                            </div>
+                            <h4> <i class="fa fa-id-card"> Mot de passe :</i></h4>
+                            <p>${password}</p>
                         </div>
                     </div>
-                </a>
+                </div>
+
             </div>
 
-            <div class="col-md-4 col-sm-6 mt-4">
-                    <div>
-                        <div>
-                            <div>
-                                <h4> <i class="fa fa-id-card"> Adresse postale :</i></h4>
-                                <output value="${param['login']}"></output>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+
 
 
         </div>
     </div>
-    <div class='mt-60'>
-        <button type="submit" class="btn btn-block btn-primary">Modifier les informations</button>
+    <div class='mt-60' style="background-color: white">
+        <button type="submit" class="btn btn-block btn-primary" style="color: steelblue">Modifier les informations</button>
     </div>
 
 </body>

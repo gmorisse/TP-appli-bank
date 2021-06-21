@@ -5,6 +5,8 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.dao.PersonDao;
+import fr.solutec.model.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,7 +40,7 @@ public class ProfilClientServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProfilClientServlet</title>");            
+            out.println("<title>Servlet ProfilClientServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ProfilClientServlet at " + request.getContextPath() + "</h1>");
@@ -59,6 +62,7 @@ public class ProfilClientServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("WEB-INF/client_profil.jsp").forward(request, response);
+
     }
 
     /**
@@ -72,7 +76,25 @@ public class ProfilClientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        // processRequest(request, response);
+        HttpSession session = request.getSession(true);
+        PrintWriter out = response.getWriter();
+        Person pConnect = (Person) session.getAttribute("userConnect");
+        String login = pConnect.getLogin();
+        String password = pConnect.getPassword();
+        try {
+            Person p = PersonDao.getByLoginAndPassword(login,password);
+            if (p != null) {
+                request.setAttribute("nom", p.getNom());
+                request.setAttribute("prenom", p.getPrenom());
+                request.setAttribute("mail", p.getMail());
+                request.setAttribute("password", p.getPassword());
+
+            }
+        } catch (Exception e) {
+            out.print("err : " + e.getMessage());
+        }
+
     }
 
     /**
