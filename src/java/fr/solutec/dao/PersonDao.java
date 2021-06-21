@@ -91,7 +91,7 @@ public class PersonDao {
 
     public static void modifyConseiller (Person person) throws SQLException {
         
-        String sql = "UPDATE person SET nom = '?', prenom = '?', login = '?', password = '?', mail = '?' WHERE idPerson = '?' ";
+        String sql = "UPDATE person SET nom = '?', prenom = '?', login = '?', mail = '?' WHERE idPerson = '?' ";
         
         Connection connexion = AccessBD.getConnexion();
 
@@ -99,9 +99,8 @@ public class PersonDao {
         requete.setString(1, person.getNom());
         requete.setString(2, person.getPrenom());
         requete.setString(3, person.getLogin());
-        requete.setString(4, person.getPassword());
-        requete.setString(5, person.getMail());
-        requete.setInt(6, person.getId());
+        requete.setString(4, person.getMail());
+        requete.setInt(5, person.getId());
 
         requete.execute();
     }
