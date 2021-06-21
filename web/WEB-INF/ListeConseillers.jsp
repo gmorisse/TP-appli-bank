@@ -47,11 +47,19 @@
                 <c:forEach var="n" items="${listeConseillers}">
                     <div class="col-sm-4">
                         <div class="card my-font-family p-2">
-                            <p class="text-info">Nom : ${n.nom}</p>
-                            <p class="text-info">Prenom : ${n.prenom}</p>
-                            <p class="text-info">Login : ${n.login}</p>
-                            <p class="text-info">Mot de Passe : ${n.password}</p>
-                            <p class="text-info">Adresse e-mail : ${n.mail}</p>
+                            <div class="row mt-4">
+                                <div class="col-sm-9">
+                                    <h3 class="titre-perso">${n.prenom} ${n.nom}</h3>
+                                    <br>
+                                    <p>Login : ${n.login}</p>
+                                    <p>Mot de Passe : ${n.password}</p>
+                                    <p>Adresse e-mail : ${n.mail}</p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <br>
+                                    <i class="fa fa-user fa-4x"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                  </c:forEach>

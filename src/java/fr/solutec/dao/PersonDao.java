@@ -89,6 +89,23 @@ public class PersonDao {
 
     }
 
+    public static void modifyConseiller (Person person) throws SQLException {
+        
+        String sql = "UPDATE person SET nom = '?', prenom = '?', login = '?', password = '?', mail = '?' WHERE idPerson = '?' ";
+        
+        Connection connexion = AccessBD.getConnexion();
+
+        PreparedStatement requete = connexion.prepareStatement(sql);
+        requete.setString(1, person.getNom());
+        requete.setString(2, person.getPrenom());
+        requete.setString(3, person.getLogin());
+        requete.setString(4, person.getPassword());
+        requete.setString(5, person.getMail());
+        requete.setInt(6, person.getId());
+
+        requete.execute();
+    }
+    
     public static boolean isAdmin(Person p) throws SQLException {
         boolean isAdmin = false;
         String sql = "SELECT * FROM admin a INNER JOIN person p ON p.idPerson = a.Person_idPerson WHERE p.idPerson = ? ";
@@ -199,7 +216,7 @@ public class PersonDao {
                       
             Person p = new Person();
             p.setId(rs.getInt("idPerson"));
-            p.setNom(rs.getString("nom"));
+            p.setNom(rs.getString("nom").toUpperCase());
             p.setPrenom(rs.getString("prenom"));
             p.setLogin(rs.getString("login"));
             p.setMail(rs.getString("mail"));
