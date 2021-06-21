@@ -65,7 +65,7 @@ public class CreationConseillerServlet extends HttpServlet {
         Person p = (Person) session.getAttribute("userConnect");
         if (p != null) {
             try {
-                request.getRequestDispatcher("Creation_Conseiller.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/Creation_Conseiller.jsp").forward(request, response);
 
             } catch (Exception e) {
                 PrintWriter out = response.getWriter();
@@ -105,7 +105,7 @@ public class CreationConseillerServlet extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/Admin.jsp").forward(request, response);
         } else {
             request.setAttribute("msgInscription", "Veuillez remplir tous les champs");
-            request.getRequestDispatcher("Creation_Conseiller.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/Creation_Conseiller.jsp").forward(request, response);
         }
     }
 

@@ -26,7 +26,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 </head>
 
-<body style="background-color: steelblue">
+<body>
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -47,91 +47,33 @@
         </nav>
     </div>
 
-    <section>
-        <div class="container mt-4" style="background-color:white">
-            <div class="row">
-
-                <div class="col-md-12 col-sm-12">
-                    <h2 class="center" >Veuillez retrouver ici les informations sur votre profil.</h2>
-                    <hr>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <div class="container mt-120" style="background-color: white">
-        <div class="row">
-
-            <div class="col-md-4 col-sm-6">
-
-                <div>
-                    <div>
-                        <div>
-                            <img src="" alt="Photo de profil">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-
-                <div>
-                    <div>
-                        <div>
-                            <h4> <i class="fa fa-id-card"> Nom :</i></h4>
-                            <p>${userConnecter.nom}</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <div>
-                    <div>
-                        <div>
-                            <h4> <i class="fa fa-id-card"> Prénom :</i></h4>
-                            <p>${userConnecter.prenom}</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-4 col-sm-6 mt-4">
-                <div>
-                    <div>
-                        <div>
-                            <h4> <i class="fa fa-id-card"> Mail :</i></h4>
-                            <p>${userConnecter.mail}</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-4 col-sm-6 mt-4">
-                <div>
-                    <div>
-                        <div>
-                            <h4> <i class="fa fa-id-card"> Mot de passe :</i></h4>
-                            <p>${userConnecter.password}</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-
-
-        </div>
     </div>
-    <div class='mt-120 center'>
-        <button type="submit" class="btn btn-primary" style="color: steelblue; background-color: white">Modifier les informations</button>
+    <h2 class="center mt-4">Vos informations</h2>
+
+    <div class="container">
+        <form class="my-font-family" action="ProfilClient" method="POST">
+
+
+            <div class="form-group mt-4">
+                <label>Nom</label>
+                <input type="text" class="form-control" name="nom" placeholder="${userConnecter.nom}">
+            </div>
+            <div class="form-group mt-4">
+                <label>Prénom</label>
+                <input type="text" class="form-control" name="prenom" placeholder="${userConnecter.prenom}">
+            </div>
+            <div class="form-group mt-4">
+                <label>Mail</label>
+                <input type="text" class="form-control" name="mail" placeholder="${userConnecter.mail}">
+            </div>
+            <div class="form-group mt-4">
+                <label>Login</label>
+                <input type="text" class="form-control" name="login" placeholder="${userConnecter.login}">
+            </div>
+            <div class="container center">
+            <button type="submit" class="btn btn-primary">Soumettre</button>
+            </div>
+        </form>
     </div>
 
 </body>
