@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ConseillerAffichageClient
-    Created on : 21 juin 2021, 14:08:39
+    Document   : ConseillerGestionClient
+    Created on : 21 juin 2021, 16:07:43
     Author     : PC
 --%>
 
@@ -30,26 +30,27 @@
                 <br>
                 <br><br>
                 <div class="row">
-                    <c:forEach var="n" items="${clientsGeres}">
-                        <div class="col-sm-4 pb-5">
-                            <div class="card my-font-family p-2 card-shadow ">
-                                <div class="row">
-                                    <div class="col-sm-10">
-                                        <form action="ConseillerGestionClient" method="POST">
-                                            <input type="hidden" value="${n.id}" name="idPerson" />
-                                            <p class="label-perso">Nom : ${n.nom} </p>
-                                            <p class="label-perso">Prenom : ${n.prenom} </p>
-                                            <p class="label-perso">Login : ${n.login} </p>
-                                            <p class="label-perso">Mail : ${n.mail} </p>
-                                            <button type="submit" class="btn btn-block btn-primary">Consulter</button>
-                                        </form>
+                    <div class="col-sm-4 pb-5">
+                        <div class="card my-font-family p-2 card-shadow ">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <p class="label-perso">Nom : ${clientChoisi.nom} </p>
+                                    <p class="label-perso">Prenom : ${clientChoisi.prenom} </p>
+                                    <p class="label-perso">Login : ${clientChoisi.login} </p>
+                                    <p class="label-perso">Mail : ${clientChoisi.mail} </p>
+                                    <br>
+                                    <h5>Historique des connexions :</h5>
+                                    <div class="container">
+                                        <c:forEach var="n" items="${historiqueConnexion}">
+                                            <p class="label-perso">Date : ${n.date} </p>
+                                        </c:forEach>
                                     </div>
-
                                 </div>
+
                             </div>
                         </div>
-                    </c:forEach>
-
+                    </div>
+                    <button type="button" onclick="window.location.href = 'ConseillerAffichageClients'" class="btn btn-block btn-primary">Retour</button>
                 </div>
             </div>
         </div>

@@ -340,4 +340,45 @@ public class PersonDao {
         requete1.execute();
 
     }
+    
+    public static Person getById(int id)throws SQLException{
+        String sql = "SELECT * FROM person WHERE idPerson =?";
+        Person p = new Person();
+        Connection connexion = AccessBD.getConnexion();
+        PreparedStatement requete = connexion.prepareStatement(sql);
+        requete.setInt(1, id);
+        ResultSet rs = requete.executeQuery();
+        if (rs.next()) {
+            p.setId(rs.getInt("idPerson"));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setLogin(rs.getString("login"));
+            p.setMail(rs.getString("mail"));
+        }
+        return p;
+    }
+    
+    
+    public static List<Connexion> getHistorique(Person p)throws SQLException{
+        List<Connexion> historique = new ArrayList();
+
+        String sql = "SELECT * FROM historiqueconnexion WHERE idPerson = ?";
+
+        Connection connection = AccessBD.getConnexion();
+        PreparedStatement prepare = connection.prepareStatement(sql);
+        prepare.setInt(1, p.getId());
+        ResultSet rs = prepare.executeQuery();
+
+        while (rs.next()) {
+
+            Connexion c = new Connexion();
+            c.setIdPerson(rs.getInt("id"));
+            c.setDate(rs.getDate("dateConnexion"));
+            c.setIdPerson(rs.getInt("idPerson"));
+
+            historique.add(c);
+        }
+
+        return historique;
+    }
 }
