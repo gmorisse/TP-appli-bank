@@ -181,4 +181,8 @@ public class PersonDao {
 
         return valide;
     }
+    
+    public static void getAllConseiller(){
+    
+    }
 }
