@@ -25,10 +25,13 @@
                     </div>
                     <div>
                         <button type='submit' class="btn bt-perso btn-outline-dark">Entrer</button>
-                        <button type='button' onclick="window.location.href = 'Admin'" class="btn bt-perso btn-outline-dark ml-50">Retour</button>
+                       
                     </div>
                     <div>
                         <label class="color-red ml-2" nom='msg'>${msg}</label>
+                    </div>
+                    <div>
+                        <button type='button' onclick="window.location.href = 'Admin'" class="btn bt-perso btn-outline-dark ml-5">Retour</button>
                     </div>
                 </div>
             </form>
