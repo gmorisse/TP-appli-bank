@@ -9,6 +9,7 @@ import fr.solutec.dao.PersonDao;
 import fr.solutec.model.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +19,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Valerie
+ * @author PC
  */
-@WebServlet(name = "ProfilClientServlet", urlPatterns = {"/ProfilClient"})
-public class ProfilClientServlet extends HttpServlet {
+@WebServlet(name = "ConseillerGestionDecouverts", urlPatterns = {"/ConseillerGestionDecouverts"})
+public class ConseillerGestionDecouverts extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +41,10 @@ public class ProfilClientServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProfilClientServlet</title>");
+            out.println("<title>Servlet ConseillerGestionDecouverts</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProfilClientServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ConseillerGestionDecouverts at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,11 +62,20 @@ public class ProfilClientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        Person pConnect = (Person) session.getAttribute("userConnect");
-        request.setAttribute("userConnecter", pConnect);
-        request.getRequestDispatcher("WEB-INF/client_profil.jsp").forward(request, response);
+                HttpSession session = request.getSession(true);
+        Person p = (Person) session.getAttribute("userConnect");
+        if (p != null) {
+            try {
+                request.setAttribute("clientsGeres", PersonDao.getAllClient(p));
+                request.getRequestDispatcher("WEB-INF/ConseillerGestionDecouverts.jsp").forward(request, response);
 
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("exp : " + e.getMessage());
+            }
+        } else {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -79,31 +89,16 @@ public class ProfilClientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        Person pConnect = (Person) session.getAttribute("userConnect");
-        
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String mail = request.getParameter("mail");
-        Integer id = pConnect.getId();
-        
-        Person p = new Person();
-        
-        p.setNom(nom);
-        p.setPrenom(prenom);
-        p.setMail(mail);
-        p.setId(id);
-        if (p != null) {
-            try {
-                PersonDao.modifyClient(p);
-                request.getRequestDispatcher("client_profil.jsp").forward(request, response);
-            } catch (Exception e) {
-                PrintWriter out = response.getWriter();
-                out.println("exp : " + e.getMessage());
-
-            }
-        } else {
-            request.getRequestDispatcher("client_profil.jsp").forward(request, response);
+                int idPerson = Integer.parseInt(request.getParameter("idPerson"));
+        try {
+            Person p = PersonDao.getById(idPerson);
+            request.setAttribute("clientChoisi", p);
+            //request.setAttribute("historiqueConnexion", PersonDao.getHistorique(p));
+            request.getRequestDispatcher("WEB-INF/ConseillerDecouvertClient.jsp").forward(request, response);
+            
+        } catch (SQLException e) {
+            PrintWriter out = response.getWriter();
+            out.println("exp : " + e.getMessage());
         }
     }
 
